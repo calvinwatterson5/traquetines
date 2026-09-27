@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>horas muertas</title>
+    <!-- Fuente gótica desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reseteo global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fondo negro puro absoluto y centrado */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Título Gótico "horas muertas" */
+        header {
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .gothic-title {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 3.5rem;
+            font-weight: normal;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        /* Cuadrícula exclusiva de miniaturas medievales */
+        .gallery-section {
+            width: 100%;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 100%;
+        }
+
+        .grid-item {
+            aspect-ratio: 1 / 1;
+            background-color: #0a0a0a;
+            border: 1px solid #222222;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .grid-item:hover {
+            border-color: #ffffff;
+            transform: scale(1.03);
+        }
+
+        .grid-item.active {
+            border-color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(110%) brightness(95%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Título Gótico -->
+        <header>
+            <h1 class="gothic-title">horas muertas</h1>
+        </header>
+
+        <!-- Cuadrícula de Manuscritos -->
+        <section class="gallery-section">
+            <div id="image-grid" class="image-grid"></div>
+        </section>
+
+    </div>
+
+    <!-- Elemento de audio invisible de fondo -->
+    <audio id="audio-stream" preload="metadata"></audio>
+
+    <script>
+        // Lista de programas con miniaturas medievales estables
+        const playlist = [
+            {
+                title: "Programa I",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500&auto=format&fit=crop&q=80"
+            },
+            {
+                title: "Programa II",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=500&auto=format&fit=crop&q=80"
+            },
+            {
+                title: "Programa III",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+                image: "https://images.unsplash.com/photo-1582561219475-f3e433364fdd?w=500&auto=format&fit=crop&q=80"
+            },
+            {
+                title: "Programa IV",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+                image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500&auto=format&fit=crop&q=80"
+            }
+        ];
+
+        let currentTrackIndex = 0;
+        const audioStream = document.getElementById('audio-stream');
+        const imageGrid = document.getElementById('image-grid');
+
+        audioStream.volume = 0.8;
+        renderImageGrid();
+
+        function renderImageGrid() {
+            imageGrid.innerHTML = '';
+            playlist.forEach((track, index) => {
+                const div = document.createElement('div');
+                div.classList.add('grid-item');
+                div.innerHTML = `<img src="${track.image}" alt="${track.title}">`;
+                
+                // Al hacer clic en cualquier miniatura, suena la música y se ilumina
+                div.addEventListener('click', () => {
+                    currentTrackIndex = index;
+                    audioStream.src = track.src;
+                    audioStream.play().catch(err => console.log(err));
+                    highlightActiveImage();
+                });
+                
+                imageGrid.appendChild(div);
+            });
+        }
+
+        function highlightActiveImage() {
+            const items = imageGrid.querySelectorAll('.grid-item');
+            items.forEach((item, index) => {
+                if (index === currentTrackIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
