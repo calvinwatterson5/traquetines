@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>traquetines</title>
+    <title>horas muertas</title>
     <!-- Fuentes desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     
@@ -37,7 +37,7 @@
             flex-grow: 1;
         }
 
-        /* Título Gótico Principal "traquetines" */
+        /* Título Gótico Principal "horas muertas" */
         header {
             margin-bottom: 30px;
             text-align: center;
@@ -116,44 +116,44 @@
             text-align: center;
         }
 
-        /* Contenedor principal de texto y bloques flotados */
+        /* Contenedor principal de texto */
         .detail-content {
             width: 100%;
             max-width: 380px;
-            display: block; /* Permite flujo de texto alrededor de elementos flotados */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             margin-bottom: 30px;
-            /* Limpiador de flotados al final */
-            overflow: hidden; 
         }
 
-        /* Estilo de los párrafos de texto (MedievalSharp) */
+        /* Estilo de los párrafos de texto con la imagen flotando en su interior */
         .detail-paragraph {
             font-family: 'MedievalSharp', cursive;
-            font-size: 1.0rem;
+            font-size: 1rem;
             line-height: 1.2;
             color: #cccccc;
             letter-spacing: 0.2px;
             text-align: justify;
             text-justify: inter-word;
-            margin-bottom: 10px; /* Espacio entre párrafos */
+            overflow: hidden; /* Contiene los elementos flotados dentro del párrafo */
         }
 
-        /* Bloque de imagen flotada con ancho ajustado automáticamente al contenido */
+        /* Bloque de imagen flotada dentro del párrafo */
         .inline-image-block {
             display: inline-block;
-            max-width: 45%; /* Límite para que no acapare toda la pantalla */
-            margin-bottom: 10px;
+            max-width: 42%;
         }
 
-        /* Clases para alternar o fijar la posición a izquierda o derecha */
         .float-left {
             float: left;
-            margin-right: 10px;
+            margin-right: 12px;
+            margin-bottom: 4px;
         }
 
         .float-right {
             float: right;
-            margin-left: 10px;
+            margin-left: 12px;
+            margin-bottom: 4px;
         }
 
         .inline-image-block img {
@@ -166,15 +166,16 @@
             display: block;
         }
 
-        /* Pie de foto ajustado estrictamente a la longitud de la foto */
+        /* Pie de foto ajustado al ancho de la imagen */
         .inline-caption {
             font-family: 'UnifrakturMaguntia', cursive;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #777777;
             letter-spacing: 0.5px;
             text-align: center;
-            margin-top: 5px;
-            line-height: 1.2;
+            margin-top: 4px;
+            display: block;
+            line-height: 1.1;
         }
 
         /* Botón de regreso */
@@ -222,7 +223,7 @@
         
         <!-- Título Gótico Principal con letras dinámicas -->
         <header>
-            <h1 class="gothic-title" id="main-title">traquetines</h1>
+            <h1 class="gothic-title" id="main-title">horas muertas</h1>
         </header>
 
         <!-- SECCIÓN 1: Cuadrícula General -->
@@ -251,59 +252,52 @@
     <audio id="audio-stream" preload="metadata"></audio>
 
     <script>
-        // Lista de programas con contenido mixto (texto e imágenes flotadas)
+        // Lista de programas con párrafos que pueden contener opcionalmente una imagen integrada
         const playlist = [
             {
-                title: "Programa 1",
+                title: "Programa I",
                 src: "music/dd.mp3",
                 thumbnail: "images/1.jpg", 
                 content: [
                     {
-                        type: "text",
-                        text: "En este primer capítulo exploramos las danzas instrumentales de la baja edad media, donde los juglares recorrían los burgos interpretando estampies a los pies de las murallas. Die genaue Datierung des Minnesängers Hiltbolt von Schwangau ist umstritten, da es mehrere Träger dieses Namens gab und somit urkundliche Belege von über 100 Jahren, von 1125 bis 1254, vorhanden sind. Dies ist darauf zurückzuführen, dass es in der Familie von Schwangau üblich war, den Namen Hiltbolt an die Nachkommen weiterzugeben. Aufgrund des angenommenen Entstehungszeitraumes der Minnelieder werden dem Minnesänger Hiltbolt von Schwangau die urkundlichen Belege von 1221 bis 1254 zugeschrieben. Für die Zeit zwischen 1179 und 1221 existieren allerdings keinerlei urkundliche Belege, welche einen Hiltbolt erwähnen."
+                        text: "En este primer capítulo exploramos las danzas instrumentales de la baja edad media, donde los juglares recorrían los burgos interpretando estampies a los pies de las murallas. En la Edad Media, la institución de la caballería vino a ser un progreso sobre el brutal y bárbaro guerrero antiguo. Estaba relacionada con un código de conducta y de honor que definía no solamente el arte de la guerra medieval, sino que también implicaba reglamentos específicos de conducta religiosa, moral y social identificados plenamente con los ideales de la vida cortesana y religiosa medieval. El caballero o paladín era necesariamente un señor feudal y la caballería ligera o bien pesada a que pertenecía era un cuerpo militar al servicio de un rey o poder feudal desde los tiempos de los antiguos imperios medo y aqueménida, que adoptaron la costumbre de usar el caballo como arma, montando a los guerreros sobre el animal, a diferencia de etapas anteriores, cuando sólo se le usaba como animal de tiro al que se ataba un carro o carroza de combate. Posteriormente los medos adoptaron el uso de la armadura completa, dando inicio así a la caballería pesada, recurso fundamental para la guerra hasta la aparición de la pólvora.",
+                        image: {
+                            url: "images/13.jpg",
+                            caption: "Ritter Hiltbolt von Schwangau, un pibe caballero que disfrutaba de su estatus",
+                            float: "left" // 'left' o 'right'
+                        }
                     },
                     {
-                        type: "image",
-                        url: "images/13.jpg", 
-                        caption: "Ritter Hiltbolt von Schwangau, un pibe que resulta era caballero",
-                        float: "left" // Puedes cambiar dinámicamente a 'left' o 'right'
-                    },
-                    {
-                        type: "text",
-                        text: "La estructura rítmica de estas piezas revela un pulso terrenal, desprovisto de la rigidez litúrgica y adaptado al movimiento de las cortes señoriales. Los instrumentos de viento y cuerda hacían eco en plazas y callejuelas estrechas."
-                    },
-                    {
-                        type: "image",
-                        url: "images/14.jpg",
-                        caption: "Músicos itinerantes",
-                        float: "right"
+                        text: "La estructura rítmica de estas piezas revela un pulso terrenal, desprovisto de la rigidez litúrgica y adaptado al movimiento de las cortes señoriales. Los instrumentos de viento y cuerda hacían eco en plazas y callejuelas. La trayectoria vital de un caballero medieval era, por lo general, la de un hombre de noble cuna que, habiendo servido en su primera juventud como paje y escudero, era luego ceremonialmente ascendido por sus superiores al rango de caballero. Durante la ceremonia de investidura el aspirante solía prestar juramento de ser valiente, leal y cortés, así como de proteger a los indefensos; lo que se denominaba el código de caballería. Convertido en ideal caballeresco (el del "caballero andante"), fue un importante componente de la ideología justificativa de la función de la nobleza en la sociedad estamental, y se expresó en la denominada literatura caballeresca (cantares de gesta, poesía trovadoresca, romancero, materia de Francia, materia de Bretaña, materia de Roma, libros de caballerías, novela caballeresca) y en todo tipo de obras de arte. Otras ceremonias también podían elegir a un caballero como líder militar para la batalla, el llamado adalid.",
+                        image: {
+                            url: "images/14.jpg",
+                            caption: "Músicos itinerantes",
+                            float: "right"
+                        }
                     }
                 ]
             },
             {
                 title: "Programa II",
-               src: "music/dd.mp3",
-                thumbnail: "images/2.jpg",
+                src: "music/dd.mp3",
+                thumbnail: "images/2.jpg", 
                 content: [
                     {
-                        type: "text",
-                        text: "Una inmersión profunda en la escuela de Notre-Dame y el organum polifónico. Las catedrales góticas resonaban con estas complejas arquitecturas vocales esculpidas en piedra y aire."
-                    },
-                    {
-                        type: "image",
-                        url: "images/programa2-detalle.jpg",
-                        caption: "Walther von der Vogelweide",
-                        float: "left"
+                        text: "Una inmersión profunda en la escuela de Notre-Dame y el organum polifónico. Las catedrales góticas resonaban con estas complejas arquitecturas vocales esculpidas en piedra y aire.",
+                        image: {
+                            url: "images/programa2-detalle.jpg",
+                            caption: "Walther von der Vogelweide",
+                            float: "left"
+                        }
                     }
                 ]
             },
             {
                 title: "Programa III",
                 src: "music/dd.mp3",
-                thumbnail: "images/3.jpg",
+                thumbnail: "images/3.jpg", 
                 content: [
                     {
-                        type: "text",
                         text: "La obra cumbre de Guillaume de Machaut analizada nota a nota. La polifonía del Ars Nova redefine la devoción religiosa a través de un misticismo terrenal y sofisticado."
                     }
                 ]
@@ -311,10 +305,9 @@
             {
                 title: "Programa IV",
                 src: "music/dd.mp3",
-                thumbnail: "images/4.jpg",
+                thumbnail: "images/4.jpg", 
                 content: [
                     {
-                        type: "text",
                         text: "Cantigas de Alfonso X el Sabio. Un puente sonoro entre las culturas cristiana, judía y musulmana de la península ibérica medieval impregnado de lirismo devocional."
                     }
                 ]
@@ -322,10 +315,9 @@
             {
                 title: "Programa V",
                 src: "music/dd.mp3",
-                thumbnail: "images/5.jpg",
+                thumbnail: "images/5.jpg", 
                 content: [
                     {
-                        type: "text",
                         text: "Las visiones místicas convertidas en melodías monofónicas por Hildegard von Bingen. Cantos celestiales que desafiaron los límites de la tesitura vocal de su época."
                     }
                 ]
@@ -333,10 +325,9 @@
             {
                 title: "Programa VI",
                 src: "music/dd.mp3",
-                thumbnail: "images/6.jpg",
+                thumbnail: "images/6.jpg", 
                 content: [
                     {
-                        type: "text",
                         text: "El contrapunto inglés de John Dunstaple y su influencia en el continente. Armonías diáfanas y acordes plenos que anticipaban la llegada del Renacimiento."
                     }
                 ]
@@ -344,10 +335,9 @@
             {
                 title: "Programa VII",
                 src: "music/dd.mp3",
-                thumbnail: "images/7.jpg",
+                thumbnail: "images/7.jpg", 
                 content: [
                     {
-                        type: "text",
                         text: "Estela do dia: la fama de las cantigas marianas analizada desde la perspectiva de la monodia cortesana medieval y los instrumentos de cuerda frotada."
                     }
                 ]
@@ -355,10 +345,9 @@
             {
                 title: "Programa VIII",
                 src: "music/dd.mp3",
-                thumbnail: "images/8.jpg",
+                thumbnail: "images/8.jpg", 
                 content: [
                     {
-                        type: "text",
                         text: "Nuevas variaciones sobre repertorios anónimos de tablatura instrumental antigua. Un ejercicio de arqueología sonora interpretado con criterios históricos."
                     }
                 ]
@@ -366,10 +355,9 @@
             {
                 title: "Programa IX",
                 src: "music/dd.mp3",
-                thumbnail: "images/9.jpg",
+                thumbnail: "images/9.jpg", 
                 content: [
                     {
-                        type: "text",
                         text: "La instrumentación medieval en los manuscritos alfonsíes: cítolas, laudes y fiedles dialogando en una atmósfera de rigurosa contemplación estética."
                     }
                 ]
@@ -377,10 +365,9 @@
             {
                 title: "Programa X",
                 src: "music/dd.mp3",
-                thumbnail: "images/10.jpg",
+                thumbnail: "images/10.jpg", 
                 content: [
                     {
-                        type: "text",
                         text: "El arpa gótica y su papel litúrgico y profano en las cortes centroeuropeas del siglo XIV. El sonido íntimo de la cuerda pulsada sobre caja de madera."
                     }
                 ]
@@ -388,10 +375,9 @@
             {
                 title: "Programa XI",
                 src: "music/dd.mp3",
-                thumbnail: "images/11.jpg",
+                thumbnail: "images/11.jpg", 
                 content: [
                     {
-                        type: "text",
                         text: "Minnesänger y trovadores alemanes: la poesía cantada como vehículo de transmisión cultural, amor cortés y crónica social de los feudos medievales."
                     }
                 ]
@@ -399,10 +385,9 @@
             {
                 title: "Programa XII",
                 src: "music/dd.mp3",
-                thumbnail: "images/12.jpg",
+                thumbnail: "images/12.jpg", 
                 content: [
                     {
-                        type: "text",
                         text: "Clausura del ciclo con el repertorio sacro de abadías y conventos femeninos. El canto llano como forma de meditación atemporal en la penumbra monástica."
                     }
                 ]
@@ -443,24 +428,26 @@
             detailProgramTitle.textContent = track.title;
             detailContentContainer.innerHTML = '';
 
-            track.content.forEach(block => {
-                if (block.type === 'text') {
-                    const p = document.createElement('p');
-                    p.classList.add('detail-paragraph');
-                    p.textContent = block.text;
-                    detailContentContainer.appendChild(p);
-                } else if (block.type === 'image') {
-                    const imgDiv = document.createElement('div');
-                    // Asignación de la clase float según se indique en los datos (por defecto 'float-left')
-                    const floatClass = block.float === 'right' ? 'float-right' : 'float-left';
-                    imgDiv.classList.add('inline-image-block', floatClass);
-                    
-                    imgDiv.innerHTML = `
-                        <img src="${block.url}" alt="${track.title}">
-                        <p class="inline-caption">${block.caption}</p>
+            track.content.forEach(paragraphData => {
+                const p = document.createElement('p');
+                p.classList.add('detail-paragraph');
+                
+                let htmlContent = '';
+                
+                // Si el párrafo tiene una imagen asociada, se inserta al inicio del párrafo para que el texto la envuelva
+                if (paragraphData.image) {
+                    const floatClass = paragraphData.image.float === 'right' ? 'float-right' : 'float-left';
+                    htmlContent += `
+                        <span class="inline-image-block ${floatClass}">
+                            <img src="${paragraphData.image.url}" alt="${track.title}">
+                            <span class="inline-caption">${paragraphData.image.caption}</span>
+                        </span>
                     `;
-                    detailContentContainer.appendChild(imgDiv);
                 }
+                
+                htmlContent += paragraphData.text;
+                p.innerHTML = htmlContent;
+                detailContentContainer.appendChild(p);
             });
 
             gallerySection.style.display = 'none';
@@ -473,7 +460,7 @@
         }
 
         function colorizeRandomLetters() {
-            const text = "traquetines";
+            const text = "horas muertas";
             const colors = ['color-red', 'color-yellow', 'color-green', 'color-blue'];
             
             let htmlContent = '';
