@@ -65,7 +65,10 @@
             letter-spacing: 2px;
             cursor: pointer;
         }
-
+.color-red { color: #ff3333 !important; text-shadow: 0 0 8px rgba(255, 51, 51, 0.4); }
+        .color-yellow { color: #ffd700 !important; text-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
+        .color-green { color: #33cc66 !important; text-shadow: 0 0 8px rgba(51, 204, 102, 0.4); }
+        .color-blue { color: #3399ff !important; text-shadow: 0 0 8px rgba(51, 153, 255, 0.4); }
         /* Cuadrícula de 12 miniaturas en 2 columnas */
         .gallery-section {
             width: 100%;
@@ -133,6 +136,9 @@
             margin-bottom: 35px;
             max-width: 380px;
             letter-spacing: 0.2px;
+            text-align: justify; /* ¡TEXTO JUSTIFICADO AQUÍ! */
+            text-justify: inter-word; /* Mejora el espaciado al justificar */
+            hyphens: auto; /* Permite guiones si el texto es muy denso */
         }
 
         /* Botón de regreso */
