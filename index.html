@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>traquetines</title>
-    <!-- Fuente gótica desde Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <title>horas muertas</title>
+    <!-- Fuentes desde Google Fonts: Gótica para títulos y Sans-Serif para lectura -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         /* Reseteo global */
@@ -37,7 +37,7 @@
             flex-grow: 1;
         }
 
-        /* Título Gótico "traquetines" */
+        /* Título Gótico "horas muertas" */
         header {
             margin-bottom: 30px;
             text-align: center;
@@ -106,7 +106,7 @@
             display: flex;
         }
 
-        /* Título del programa en detalle */
+        /* Título del programa en detalle (Fuente Gótica) */
         .detail-title {
             font-family: 'UnifrakturMaguntia', cursive;
             font-size: 2.4rem;
@@ -122,34 +122,34 @@
             max-width: 380px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 22px;
             margin-bottom: 30px;
         }
 
-        /* Estilo de los párrafos de texto */
+        /* Estilo de los párrafos de texto (Fuente limpia y legible 'Inter') */
         .detail-paragraph {
-            font-family: 'UnifrakturMaguntia', cursive;
-            font-size: 1.15rem;
-            line-height: 1.8;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.6;
             color: #cccccc;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.2px;
             text-align: justify;
             text-justify: inter-word;
-            hyphens: auto;
         }
 
-        /* Estilo para las imágenes intercaladas a menor tamaño */
+        /* Estilo para las imágenes intercaladas a un tamaño menor y elegante */
         .inline-image-block {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 10px 0;
+            margin: 5px 0;
         }
 
         .inline-image-block img {
-            width: 65%; /* Tamaño más pequeño e integrado */
-            max-width: 220px;
+            width: 45%; /* Tamaño notablemente más pequeño e integrado */
+            max-width: 150px;
             aspect-ratio: 1 / 1;
             object-fit: cover;
             border: 1px solid #333333;
@@ -158,7 +158,7 @@
             margin-bottom: 6px;
         }
 
-        /* Pie de foto pequeño */
+        /* Pie de foto pequeño (Fuente gótica sutil) */
         .inline-caption {
             font-family: 'UnifrakturMaguntia', cursive;
             font-size: 0.85rem;
@@ -167,7 +167,7 @@
             text-align: center;
         }
 
-        /* Botón de regreso */
+        /* Botón de regreso (Fuente gótica) */
         .back-btn {
             background: transparent;
             border: 1px solid #444444;
@@ -187,7 +187,7 @@
             color: #ffffff;
         }
 
-        /* Pie de página con "hecho con irreverencia" */
+        /* Pie de página con "hecho con irreverencia" (Fuente gótica) */
         footer {
             margin-top: 40px;
             text-align: center;
@@ -212,7 +212,7 @@
         
         <!-- Título Gótico Principal con letras dinámicas -->
         <header>
-            <h1 class="gothic-title" id="main-title">traquetines</h1>
+            <h1 class="gothic-title" id="main-title">horas muertas</h1>
         </header>
 
         <!-- SECCIÓN 1: Cuadrícula General (12 Programas en 2 columnas) -->
@@ -241,13 +241,12 @@
     <audio id="audio-stream" preload="metadata"></audio>
 
     <script>
-        // Lista de programas con contenido mixto (párrafos e imágenes intercaladas en orden)
+        // Lista de programas con texto (Inter) e imágenes reducidas intercaladas
         const playlist = [
             {
                 title: "Programa I",
-                src: "music/dd.mp3",
-                thumbnail: "images/1.jpg",
-                // Aquí definimos el orden exacto de textos e imágenes intercaladas:
+                src: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Anonymous_-_Estampie_-_keyboard_version.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Codex_Manesse_Ritter_Hiltbolt_von_Schwangau.jpg/400px-Codex_Manesse_Ritter_Hiltbolt_von_Schwangau.jpg",
                 content: [
                     {
                         type: "text",
@@ -260,7 +259,7 @@
                     },
                     {
                         type: "text",
-                        text: "La estructura rítmica de estas piezas revelan un pulso terrenal, desprovisto de la rigidez litúrgica y adaptado al movimiento de las cortes señoriales."
+                        text: "La estructura rítmica de estas piezas revela un pulso terrenal, desprovisto de la rigidez litúrgica y adaptado al movimiento de las cortes señoriales."
                     },
                     {
                         type: "image",
@@ -271,8 +270,8 @@
             },
             {
                 title: "Programa II",
-                src: "music/dd.mp3",
-                thumbnail: "images/2.jpg",
+                src: "https://upload.wikimedia.org/wikipedia/commons/8/82/Perotin_-_Viderunt_Omnes_%28Ensemble_Organum%29.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Codex_Manesse_Walther_von_der_Vogelweide.jpg/400px-Codex_Manesse_Walther_von_der_Vogelweide.jpg",
                 content: [
                     {
                         type: "text",
@@ -285,11 +284,10 @@
                     }
                 ]
             },
-            // (Puedes seguir añadiendo los demás programas con su estructura 'content' de texto e imágenes intercaladas)
             {
                 title: "Programa III",
-                 src: "music/dd.mp3",
-                thumbnail: "images/3.jpg",
+                src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Guillaume_de_Machaut_-_Messe_de_nostre_dame_-_Kyrie.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Tres_Riches_Heures_du_Duc_de_Berry_avril.jpg/400px-Tres_Riches_Heures_du_Duc_de_Berry_avril.jpg",
                 content: [
                     {
                         type: "text",
@@ -299,8 +297,8 @@
             },
             {
                 title: "Programa IV",
-                src: "music/dd.mp3",
-                thumbnail: "images/4.jpg",
+                src: "https://upload.wikimedia.org/wikipedia/commons/3/36/Cantigas_de_Santa_Maria_No._166_-_Como_pod_a_Groriosa.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Tres_Riches_Heures_du_Duc_de_Berry_juin.jpg/400px-Tres_Riches_Heures_du_Duc_de_Berry_juin.jpg",
                 content: [
                     {
                         type: "text",
@@ -310,8 +308,8 @@
             },
             {
                 title: "Programa V",
-                          src: "music/dd.mp3",
-                thumbnail: "images/5.jpg",
+                src: "https://upload.wikimedia.org/wikipedia/commons/4/45/Hildegard_von_Bingen_-_O_viridis_diadema.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Belles_Heures_du_Duc_de_Berry_-_fol._211v%2C_The_Flight_into_Egypt.jpg/400px-Belles_Heures_du_Duc_de_Berry_-_fol._211v%2C_The_Flight_into_Egypt.jpg",
                 content: [
                     {
                         type: "text",
@@ -321,8 +319,8 @@
             },
             {
                 title: "Programa VI",
-                               src: "music/dd.mp3",
-                thumbnail: "images/6.jpg",
+                src: "https://upload.wikimedia.org/wikipedia/commons/a/a2/John_Dunstaple_-_Quam_pulchra_es.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Hortus_Deliciarum%2C_Höllensturz.jpg/400px-Hortus_Deliciarum%2C_Höllensturz.jpg",
                 content: [
                     {
                         type: "text",
@@ -332,8 +330,8 @@
             },
             {
                 title: "Programa VII",
-                               src: "music/dd.mp3",
-                thumbnail: "images/7.jpg",
+                src: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Alfonso_X_el_Sabio_-_Cantiga_100_%28Santa_Maria_strela_do_dia%29.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Biblia_maciejowska_-_The_Morgan_Library_%26_Museum_-_MS_M.638%2C_fol._3v.jpg/400px-Biblia_maciejowska_-_The_Morgan_Library_%26_Museum_-_MS_M.638%2C_fol._3v.jpg",
                 content: [
                     {
                         type: "text",
@@ -343,8 +341,8 @@
             },
             {
                 title: "Programa VIII",
-                                src: "music/dd.mp3",
-                thumbnail: "images/8.jpg",
+                src: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Anonymous_-_Estampie_-_keyboard_version.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Codex_Manesse_Der_Kanzler_von_Pauren.jpg/400px-Codex_Manesse_Der_Kanzler_von_Pauren.jpg",
                 content: [
                     {
                         type: "text",
@@ -354,8 +352,9 @@
             },
             {
                 title: "Programa IX",
-                               src: "music/dd.mp3",
-                thumbnail: "images/9.jpg", content: [
+                src: "https://upload.wikimedia.org/wikipedia/commons/8/82/Perotin_-_Viderunt_Omnes_%28Ensemble_Organum%29.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cantigas_de_Santa_Maria_-_musicians.jpg/400px-Cantigas_de_Santa_Maria_-_musicians.jpg",
+                content: [
                     {
                         type: "text",
                         text: "La instrumentación medieval en los manuscritos alfonsíes: cítolas, laudes y fiedles dialogando en una atmósfera de rigurosa contemplación estética."
@@ -364,8 +363,9 @@
             },
             {
                 title: "Programa X",
-                               src: "music/dd.mp3",
-                thumbnail: "images/10.jpg", content: [
+                src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Guillaume_de_Machaut_-_Messe_de_nostre_dame_-_Kyrie.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Wenceslas_Bible_-_David_playing_harp.jpg/400px-Wenceslas_Bible_-_David_playing_harp.jpg",
+                content: [
                     {
                         type: "text",
                         text: "El arpa gótica y su papel litúrgico y profano en las cortes centroeuropeas del siglo XIV. El sonido íntimo de la cuerda pulsada sobre caja de madera."
@@ -374,8 +374,8 @@
             },
             {
                 title: "Programa XI",
-                               src: "music/dd.mp3",
-                thumbnail: "images/11.jpg",
+                src: "https://upload.wikimedia.org/wikipedia/commons/3/36/Cantigas_de_Santa_Maria_No._166_-_Como_pod_a_Groriosa.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Hit_from_Codex_Manesse.jpg/400px-Codex_Manesse_Manuscrito iluminado",
                 content: [
                     {
                         type: "text",
@@ -385,8 +385,8 @@
             },
             {
                 title: "Programa XII",
-                              src: "music/dd.mp3",
-                thumbnail: "images/12.jpg",
+                src: "https://upload.wikimedia.org/wikipedia/commons/4/45/Hildegard_von_Bingen_-_O_viridis_diadema.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Bible_historiale_-_French_miniature_14th_century.jpg/400px-Bible_historiale_-_French_miniature_14th_century.jpg",
                 content: [
                     {
                         type: "text",
@@ -430,7 +430,6 @@
             detailProgramTitle.textContent = track.title;
             detailContentContainer.innerHTML = '';
 
-            // Recorremos el array "content" y construimos dinámicamente párrafos o imágenes según corresponda
             track.content.forEach(block => {
                 if (block.type === 'text') {
                     const p = document.createElement('p');
@@ -457,9 +456,8 @@
             gallerySection.style.display = 'block';
         }
 
-        // Script para colorear 4 letras al azar
         function colorizeRandomLetters() {
-            const text = "traquetines";
+            const text = "horas muertas";
             const colors = ['color-red', 'color-yellow', 'color-green', 'color-blue'];
             
             let htmlContent = '';
