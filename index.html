@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>traquetines</title>
-    <!-- Fuente gótica desde Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">    
+    <title>horas muertas</title>
+    <!-- Importamos AMBAS fuentes de Google Fonts en un solo enlace -->
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Títulos con fuente gótica */
+        .gothic-title, .detail-title {
+            font-family: 'UnifrakturMaguntia', cursive;
+        }
+
+        /* Descripciones con fuente rústica de manuscrito */
+        .detail-description {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.2rem;
+            color: #cccccc;
+        }
+
+        /* Resto de tus estilos... */
     <style>
         /* Reseteo global */
         * {
@@ -43,7 +58,7 @@
         }
 
         .gothic-title {
-            font-family: 'MedievalSharp', cursive;
+            font-family: 'UnifrakturMaguntia', cursive;
             font-size: 3.5rem;
             font-weight: normal;
             color: #ffffff;
@@ -111,7 +126,7 @@
 
         /* Descripción Lorem Ipsum centrada (Fuente gótica) */
         .detail-description {
-            font-family: 'UnifrakturMaguntia', cursive;
+            font-family: 'MedievalSharp', cursive;
             font-size: 1.25rem;
             line-height: 1.8;
             color: #cccccc;
@@ -176,7 +191,11 @@
         <section id="detail-section" class="detail-view">
             <h2 id="detail-program-title" class="detail-title"></h2>
             <p class="detail-description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Guillaume de Machaut (también Machault) (Machault, Reims, c. 1300 – Reims, abril de 1377) fue un clérigo, poeta y compositor medieval francés. Su proyección fue enorme y es históricamente el máximo representante del movimiento conocido como Ars nova, siendo considerado el más célebre compositor del siglo xiv. Contribuyó al desarrollo del motete y de la canción secular. Compuso la Misa de Notre Dame en cuatro partes, que es la primera misa polifónica conocida escrita por un solo compositor. Su forma de componer, tanto en su producción religiosa como profana, influyó en numerosos compositores posteriores. Machaut nació alrededor del año 1300 y fue educado en algún lugar cercano a Reims. Su apellido parece derivar de la cercana ciudad de Machault, a unos 30 km al este de Reims en la región de las Ardenas, aunque la mayoría de los musicólogos coinciden en que su lugar de nacimiento fue el mismo Reims. Fue secretario de Juan I, conde de Luxemburgo y rey de Bohemia, del año 1323 a 1346. Además se hizo canónigo durante ese período. A menudo acompañaba al rey Juan en sus varios viajes y expediciones militares alrededor de Europa (incluso a Praga). Fue nombrado canónigo de Verdún en 1330, de Arras en 1332 y de Reims en 1333. En 1340, cuando vivía en Reims, renunció a su puesto de canónigo a petición del papa Benedicto XII. En 1346 el rey Juan falleció en la Batalla de Crécy y Machaut, que ya era famoso, pasó a prestar sus servicios a otros aristócratas y mandatarios, incluida la hija del rey Juan, Bona de Luxemburgo (que murió de peste negra en 1349), Carlos II de Navarra, Jean de Berry y Carlos, Duque de Normandía, quién se convertiría en el rey Carlos V de Francia en 1364.
+
+Machaut sobrevivió a la peste negra que devastó Europa y pasó los últimos años de su vida viviendo en Reims, componiendo y supervisando todos los manuscritos de su obra. Su poema Le Voir Dit (probablemente compuesto entre 1361 y 1365) parece ser autobiográfico, memorando una antigua relación amorosa con Péronne d'Armentières, una chica joven de diecinueve años, aunque esto es objeto de controversia.
+
+Cuando Guillaume murió en 1377, otros compositores, como François Andrieu, escribieron elegías lamentando su muerte.
             </p>
             <button id="back-to-grid" class="back-btn">← Volver</button>
         </section>
