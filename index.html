@@ -116,53 +116,55 @@
             text-align: center;
         }
 
-        /* Descripción JUSTIFICADA y personalizada para cada programa */
-        .detail-description {
+        /* Contenedor principal donde se mezclan párrafos e imágenes */
+        .detail-content {
+            width: 100%;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Estilo de los párrafos de texto */
+        .detail-paragraph {
             font-family: 'UnifrakturMaguntia', cursive;
             font-size: 1.15rem;
             line-height: 1.8;
             color: #cccccc;
-            margin-bottom: 30px;
-            max-width: 380px;
             letter-spacing: 0.5px;
             text-align: justify;
             text-justify: inter-word;
             hyphens: auto;
         }
 
-        /* Contenedor para la lista de imágenes con sus pies de foto */
-        .detail-images-container {
+        /* Estilo para las imágenes intercaladas a menor tamaño */
+        .inline-image-block {
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 25px;
-            margin-bottom: 30px;
             align-items: center;
+            margin: 10px 0;
         }
 
-        .image-block {
-            width: 100%;
-            max-width: 300px;
-            text-align: center;
-        }
-
-        .image-block img {
-            width: 100%;
+        .inline-image-block img {
+            width: 65%; /* Tamaño más pequeño e integrado */
+            max-width: 220px;
             aspect-ratio: 1 / 1;
             object-fit: cover;
             border: 1px solid #333333;
             border-radius: 4px;
             filter: contrast(115%) brightness(90%);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
-        /* Pie de foto de cada imagen */
-        .image-caption {
+        /* Pie de foto pequeño */
+        .inline-caption {
             font-family: 'UnifrakturMaguntia', cursive;
-            font-size: 0.95rem;
-            color: #888888;
+            font-size: 0.85rem;
+            color: #777777;
             letter-spacing: 0.5px;
-            line-height: 1.4;
+            text-align: center;
         }
 
         /* Botón de regreso */
@@ -222,11 +224,8 @@
         <section id="detail-section" class="detail-view">
             <h2 id="detail-program-title" class="detail-title"></h2>
             
-            <!-- Descripción individual de cada programa -->
-            <p id="detail-desc" class="detail-description"></p>
-
-            <!-- Contenedor dinámico para múltiples imágenes y sus pies de foto -->
-            <div id="detail-images-list" class="detail-images-container"></div>
+            <!-- Contenedor dinámico donde se intercalarán párrafos e imágenes -->
+            <div id="detail-content-container" class="detail-content"></div>
             
             <button id="back-to-grid" class="back-btn">← Volver</button>
         </section>
@@ -242,19 +241,29 @@
     <audio id="audio-stream" preload="metadata"></audio>
 
     <script>
-        // Lista de programas con descripción INDIVIDUAL y VARIAS IMÁGENES con pies de foto
+        // Lista de programas con contenido mixto (párrafos e imágenes intercaladas en orden)
         const playlist = [
             {
                 title: "Programa I",
                 src: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Anonymous_-_Estampie_-_keyboard_version.ogg",
                 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Codex_Manesse_Ritter_Hiltbolt_von_Schwangau.jpg/400px-Codex_Manesse_Ritter_Hiltbolt_von_Schwangau.jpg",
-                description: "En este primer capítulo exploramos las danzas instrumentales de la baja edad media, donde los juglares recorrían los burgos interpretando estampies a los pies de las murallas.",
-                images: [
+                // Aquí definimos el orden exacto de textos e imágenes intercaladas:
+                content: [
                     {
+                        type: "text",
+                        text: "En este primer capítulo exploramos las danzas instrumentales de la baja edad media, donde los juglares recorrían los burgos interpretando estampies a los pies de las murallas."
+                    },
+                    {
+                        type: "image",
                         url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Codex_Manesse_Ritter_Hiltbolt_von_Schwangau.jpg/400px-Codex_Manesse_Ritter_Hiltbolt_von_Schwangau.jpg",
                         caption: "Ritter Hiltbolt von Schwangau (Codex Manesse, s. XIV)"
                     },
                     {
+                        type: "text",
+                        text: "La estructura rítmica de estas piezas revelan un pulso terrenal, desprovisto de la rigidez litúrgica y adaptado al movimiento de las cortes señoriales."
+                    },
+                    {
+                        type: "image",
                         url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cantigas_de_Santa_Maria_-_musicians.jpg/400px-Cantigas_de_Santa_Maria_-_musicians.jpg",
                         caption: "Músicos itinerantes en miniatura alfonsí"
                     }
@@ -264,23 +273,27 @@
                 title: "Programa II",
                 src: "https://upload.wikimedia.org/wikipedia/commons/8/82/Perotin_-_Viderunt_Omnes_%28Ensemble_Organum%29.ogg",
                 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Codex_Manesse_Walther_von_der_Vogelweide.jpg/400px-Codex_Manesse_Walther_von_der_Vogelweide.jpg",
-                description: "Una inmersión profunda en la escuela de Notre-Dame y el organum polifónico. Las catedrales góticas resonaban con estas complejas arquitecturas vocales esculpidas en piedra y aire.",
-                images: [
+                content: [
                     {
+                        type: "text",
+                        text: "Una inmersión profunda en la escuela de Notre-Dame y el organum polifónico. Las catedrales góticas resonaban con estas complejas arquitecturas vocales esculpidas en piedra y aire."
+                    },
+                    {
+                        type: "image",
                         url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Codex_Manesse_Walther_von_der_Vogelweide.jpg/400px-Codex_Manesse_Walther_von_der_Vogelweide.jpg",
-                        caption: "Walther von der Vogelweide (Codex Manesse)"
+                        caption: "Walther von der Vogelweide"
                     }
                 ]
             },
+            // (Puedes seguir añadiendo los demás programas con su estructura 'content' de texto e imágenes intercaladas)
             {
                 title: "Programa III",
                 src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Guillaume_de_Machaut_-_Messe_de_nostre_dame_-_Kyrie.ogg",
                 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Tres_Riches_Heures_du_Duc_de_Berry_avril.jpg/400px-Tres_Riches_Heures_du_Duc_de_Berry_avril.jpg",
-                description: "La obra cumbre de Guillaume de Machaut analizada nota a nota. La polifonía del Ars Nova redefine la devoción religiosa a través de un misticismo terrenal y sofisticado.",
-                images: [
+                content: [
                     {
-                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Tres_Riches_Heures_du_Duc_de_Berry_avril.jpg/400px-Tres_Riches_Heures_du_Duc_de_Berry_avril.jpg",
-                        caption: "Les Très Riches Heures du Duc de Berry (Mes de Abril)"
+                        type: "text",
+                        text: "La obra cumbre de Guillaume de Machaut analizada nota a nota. La polifonía del Ars Nova redefine la devoción religiosa a través de un misticismo terrenal y sofisticado."
                     }
                 ]
             },
@@ -288,11 +301,10 @@
                 title: "Programa IV",
                 src: "https://upload.wikimedia.org/wikipedia/commons/3/36/Cantigas_de_Santa_Maria_No._166_-_Como_pod_a_Groriosa.ogg",
                 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Tres_Riches_Heures_du_Duc_de_Berry_juin.jpg/400px-Tres_Riches_Heures_du_Duc_de_Berry_juin.jpg",
-                description: "Cantigas de Alfonso X el Sabio. Un puente sonoro entre las culturas cristiana, judía y musulmana de la península ibérica medieval impregnado de lirismo devocional.",
-                images: [
+                content: [
                     {
-                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Tres_Riches_Heures_du_Duc_de_Berry_juin.jpg/400px-Tres_Riches_Heures_du_Duc_de_Berry_juin.jpg",
-                        caption: "Les Très Riches Heures du Duc de Berry (Mes de Junio)"
+                        type: "text",
+                        text: "Cantigas de Alfonso X el Sabio. Un puente sonoro entre las culturas cristiana, judía y musulmana de la península ibérica medieval impregnado de lirismo devocional."
                     }
                 ]
             },
@@ -300,11 +312,10 @@
                 title: "Programa V",
                 src: "https://upload.wikimedia.org/wikipedia/commons/4/45/Hildegard_von_Bingen_-_O_viridis_diadema.ogg",
                 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Belles_Heures_du_Duc_de_Berry_-_fol._211v%2C_The_Flight_into_Egypt.jpg/400px-Belles_Heures_du_Duc_de_Berry_-_fol._211v%2C_The_Flight_into_Egypt.jpg",
-                description: "Las visiones místicas convertidas en melodías monofónicas por Hildegard von Bingen. Cantos celestiales que desafiaron los límites de la tesitura vocal de su época.",
-                images: [
+                content: [
                     {
-                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Belles_Heures_du_Duc_de_Berry_-_fol._211v%2C_The_Flight_into_Egypt.jpg/400px-Belles_Heures_du_Duc_de_Berry_-_fol._211v%2C_The_Flight_into_Egypt.jpg",
-                        caption: "Belles Heures du Duc de Berry (Huida a Egipto)"
+                        type: "text",
+                        text: "Las visiones místicas convertidas en melodías monofónicas por Hildegard von Bingen. Cantos celestiales que desafiaron los límites de la tesitura vocal de su época."
                     }
                 ]
             },
@@ -312,11 +323,10 @@
                 title: "Programa VI",
                 src: "https://upload.wikimedia.org/wikipedia/commons/a/a2/John_Dunstaple_-_Quam_pulchra_es.ogg",
                 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Hortus_Deliciarum%2C_Höllensturz.jpg/400px-Hortus_Deliciarum%2C_Höllensturz.jpg",
-                description: "El contrapunto inglés de John Dunstaple y su influencia en el continente. Armonías diáfanas y acordes plenos que anticipaban la llegada del Renacimiento.",
-                images: [
+                content: [
                     {
-                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Hortus_Deliciarum%2C_Höllensturz.jpg/400px-Hortus_Deliciarum%2C_Höllensturz.jpg",
-                        caption: "Hortus Deliciarum (Caída de los condenados)"
+                        type: "text",
+                        text: "El contrapunto inglés de John Dunstaple y su influencia en el continente. Armonías diáfanas y acordes plenos que anticipaban la llegada del Renacimiento."
                     }
                 ]
             },
@@ -324,11 +334,10 @@
                 title: "Programa VII",
                 src: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Alfonso_X_el_Sabio_-_Cantiga_100_%28Santa_Maria_strela_do_dia%29.ogg",
                 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Biblia_maciejowska_-_The_Morgan_Library_%26_Museum_-_MS_M.638%2C_fol._3v.jpg/400px-Biblia_maciejowska_-_The_Morgan_Library_%26_Museum_-_MS_M.638%2C_fol._3v.jpg",
-                description: "Estela do dia: la fama de las cantigas marianas analizada desde la perspectiva de la monodia cortesana medieval y los instrumentos de cuerda frotada.",
-                images: [
+                content: [
                     {
-                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Biblia_maciejowska_-_The_Morgan_Library_%26_Museum_-_MS_M.638%2C_fol._3v.jpg/400px-Biblia_maciejowska_-_The_Morgan_Library_%26_Museum_-_MS_M.638%2C_fol._3v.jpg",
-                        caption: "Biblia de Maciejowski (The Morgan Library & Museum)"
+                        type: "text",
+                        text: "Estela do dia: la fama de las cantigas marianas analizada desde la perspectiva de la monodia cortesana medieval y los instrumentos de cuerda frotada."
                     }
                 ]
             },
@@ -336,11 +345,10 @@
                 title: "Programa VIII",
                 src: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Anonymous_-_Estampie_-_keyboard_version.ogg",
                 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Codex_Manesse_Der_Kanzler_von_Pauren.jpg/400px-Codex_Manesse_Der_Kanzler_von_Pauren.jpg",
-                description: "Nuevas variaciones sobre repertorios anónimos de tablatura instrumental antigua. Un ejercicio de arqueología sonora interpretado con criterios históricos.",
-                images: [
+                content: [
                     {
-                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Codex_Manesse_Der_Kanzler_von_Pauren.jpg/400px-Codex_Manesse_Der_Kanzler_von_Pauren.jpg",
-                        caption: "Der Kanzler von Pauren (Codex Manesse)"
+                        type: "text",
+                        text: "Nuevas variaciones sobre repertorios anónimos de tablatura instrumental antigua. Un ejercicio de arqueología sonora interpretado con criterios históricos."
                     }
                 ]
             },
@@ -348,11 +356,10 @@
                 title: "Programa IX",
                 src: "https://upload.wikimedia.org/wikipedia/commons/8/82/Perotin_-_Viderunt_Omnes_%28Ensemble_Organum%29.ogg",
                 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cantigas_de_Santa_Maria_-_musicians.jpg/400px-Cantigas_de_Santa_Maria_-_musicians.jpg",
-                description: "La instrumentación medieval en los manuscritos alfonsíes: cítolas, laudes y fiedles dialogando en una atmósfera de rigurosa contemplación estética.",
-                images: [
+                content: [
                     {
-                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cantigas_de_Santa_Maria_-_musicians.jpg/400px-Cantigas_de_Santa_Maria_-_musicians.jpg",
-                        caption: "Músicos medievales en las Cantigas"
+                        type: "text",
+                        text: "La instrumentación medieval en los manuscritos alfonsíes: cítolas, laudes y fiedles dialogando en una atmósfera de rigurosa contemplación estética."
                     }
                 ]
             },
@@ -360,23 +367,21 @@
                 title: "Programa X",
                 src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Guillaume_de_Machaut_-_Messe_de_nostre_dame_-_Kyrie.ogg",
                 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Wenceslas_Bible_-_David_playing_harp.jpg/400px-Wenceslas_Bible_-_David_playing_harp.jpg",
-                description: "El arpa gótica y su papel litúrgico y profano en las cortes centroeuropeas del siglo XIV. El sonido íntimo de la cuerda pulsada sobre caja de madera.",
-                images: [
+                content: [
                     {
-                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Wenceslas_Bible_-_David_playing_harp.jpg/400px-Wenceslas_Bible_-_David_playing_harp.jpg",
-                        caption: "Biblia de Wenceslao - Rey David con el arpa"
+                        type: "text",
+                        text: "El arpa gótica y su papel litúrgico y profano en las cortes centroeuropeas del siglo XIV. El sonido íntimo de la cuerda pulsada sobre caja de madera."
                     }
                 ]
             },
             {
                 title: "Programa XI",
                 src: "https://upload.wikimedia.org/wikipedia/commons/3/36/Cantigas_de_Santa_Maria_No._166_-_Como_pod_a_Groriosa.ogg",
-                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Hit_from_Codex_Manesse.jpg/400px-Hit_from_Codex_Manesse.jpg",
-                description: "Minnesänger y trovadores alemanes: la poesía cantada como vehículo de transmisión cultural, amor cortés y crónica social de los feudos medievales.",
-                images: [
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Hit_from_Codex_Manesse.jpg/400px-Codex_Manesse_Manuscrito iluminado",
+                content: [
                     {
-                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Hit_from_Codex_Manesse.jpg/400px-Hit_from_Codex_Manesse.jpg",
-                        caption: "Iluminación representativa del Codex Manesse"
+                        type: "text",
+                        text: "Minnesänger y trovadores alemanes: la poesía cantada como vehículo de transmisión cultural, amor cortés y crónica social de los feudos medievales."
                     }
                 ]
             },
@@ -384,11 +389,10 @@
                 title: "Programa XII",
                 src: "https://upload.wikimedia.org/wikipedia/commons/4/45/Hildegard_von_Bingen_-_O_viridis_diadema.ogg",
                 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Bible_historiale_-_French_miniature_14th_century.jpg/400px-Bible_historiale_-_French_miniature_14th_century.jpg",
-                description: "Clausura del ciclo con el repertorio sacro de abadías y conventos femeninos. El canto llano como forma de meditación atemporal en la penumbra monástica.",
-                images: [
+                content: [
                     {
-                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Bible_historiale_-_French_miniature_14th_century.jpg/400px-Bible_historiale_-_French_miniature_14th_century.jpg",
-                        caption: "Bible historiale - Miniatura francesa del siglo XIV"
+                        type: "text",
+                        text: "Clausura del ciclo con el repertorio sacro de abadías y conventos femeninos. El canto llano como forma de meditación atemporal en la penumbra monástica."
                     }
                 ]
             }
@@ -399,8 +403,7 @@
         const gallerySection = document.getElementById('gallery-section');
         const detailSection = document.getElementById('detail-section');
         const detailProgramTitle = document.getElementById('detail-program-title');
-        const detailDesc = document.getElementById('detail-desc');
-        const detailImagesList = document.getElementById('detail-images-list');
+        const detailContentContainer = document.getElementById('detail-content-container');
         const backToGridBtn = document.getElementById('back-to-grid');
         const mainTitleContainer = document.getElementById('main-title');
 
@@ -427,18 +430,24 @@
 
         function showDetailView(track) {
             detailProgramTitle.textContent = track.title;
-            detailDesc.textContent = track.description;
+            detailContentContainer.innerHTML = '';
 
-            // Limpiamos y rellenamos el contenedor con todas las imágenes y pies de foto de este programa
-            detailImagesList.innerHTML = '';
-            track.images.forEach(imgObj => {
-                const imgBlock = document.createElement('div');
-                imgBlock.classList.add('image-block');
-                imgBlock.innerHTML = `
-                    <img src="${imgObj.url}" alt="${track.title}">
-                    <p class="image-caption">${imgObj.caption}</p>
-                `;
-                detailImagesList.appendChild(imgBlock);
+            // Recorremos el array "content" y construimos dinámicamente párrafos o imágenes según corresponda
+            track.content.forEach(block => {
+                if (block.type === 'text') {
+                    const p = document.createElement('p');
+                    p.classList.add('detail-paragraph');
+                    p.textContent = block.text;
+                    detailContentContainer.appendChild(p);
+                } else if (block.type === 'image') {
+                    const imgDiv = document.createElement('div');
+                    imgDiv.classList.add('inline-image-block');
+                    imgDiv.innerHTML = `
+                        <img src="${block.url}" alt="${track.title}">
+                        <p class="inline-caption">${block.caption}</p>
+                    `;
+                    detailContentContainer.appendChild(imgDiv);
+                }
             });
 
             gallerySection.style.display = 'none';
