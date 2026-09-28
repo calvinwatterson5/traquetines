@@ -22,15 +22,15 @@
             color: #ffffff !important;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 30px 20px;
         }
 
         .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -38,7 +38,7 @@
 
         /* Título Gótico "horas muertas" */
         header {
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             text-align: center;
         }
 
@@ -48,17 +48,18 @@
             font-weight: normal;
             color: #ffffff;
             letter-spacing: 2px;
+            cursor: pointer;
         }
 
-        /* Cuadrícula exclusiva de miniaturas medievales */
+        /* Cuadrícula de 12 miniaturas medievales */
         .gallery-section {
             width: 100%;
         }
 
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
             width: 100%;
         }
 
@@ -66,7 +67,7 @@
             aspect-ratio: 1 / 1;
             background-color: #0a0a0a;
             border: 1px solid #222222;
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
             cursor: pointer;
             position: relative;
@@ -78,16 +79,94 @@
             transform: scale(1.03);
         }
 
-        .grid-item.active {
-            border-color: #ffffff;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-        }
-
         .grid-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             filter: contrast(110%) brightness(95%);
+        }
+
+        /* Vista de Detalle del Programa (Oculta por defecto) */
+        .detail-view {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .detail-view.active {
+            display: flex;
+        }
+
+        /* Icono de reproducción minimalista en la vista de detalle */
+        .detail-player-bar {
+            margin-bottom: 25px;
+        }
+
+        .play-button {
+            background: transparent;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .play-button:hover {
+            background: #ffffff;
+            color: #000000;
+            transform: scale(1.05);
+        }
+
+        /* Título del programa en detalle (Fuente gótica) */
+        .detail-title {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* Descripción Lorem Ipsum centrada (Fuente gótica) */
+        .detail-description {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: #cccccc;
+            margin-bottom: 35px;
+            max-width: 440px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Botón de regreso */
+        .back-btn {
+            background: transparent;
+            border: 1px solid #444444;
+            color: #aaaaaa;
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.1rem;
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 1px;
+        }
+
+        .back-btn:hover {
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -95,49 +174,115 @@
 
     <div class="container">
         
-        <!-- Título Gótico -->
+        <!-- Título Gótico Principal (Haz clic para volver al inicio) -->
         <header>
-            <h1 class="gothic-title">horas muertas</h1>
+            <h1 class="gothic-title" id="main-title">horas muertas</h1>
         </header>
 
-        <!-- Cuadrícula de Manuscritos -->
-        <section class="gallery-section">
+        <!-- SECCIÓN 1: Cuadrícula General (12 Programas) -->
+        <section id="gallery-section" class="gallery-section">
             <div id="image-grid" class="image-grid"></div>
+        </section>
+
+        <!-- SECCIÓN 2: Vista de Detalle del Programa -->
+        <section id="detail-section" class="detail-view">
+            <div class="detail-player-bar">
+                <button id="detail-play-btn" class="play-button" title="Reproducir / Pausa">
+                    <svg id="detail-play-icon" viewBox="0 0 16 16" width="18" height="18">
+                        <path fill="currentColor" d="M3 2l11 6L3 14V2z"/>
+                    </svg>
+                </button>
+            </div>
+            <h2 id="detail-program-title" class="detail-title"></h2>
+            <p class="detail-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <button id="back-to-grid" class="back-btn">← Volver</button>
         </section>
 
     </div>
 
-    <!-- Elemento de audio invisible de fondo -->
+    <!-- Elemento de audio global -->
     <audio id="audio-stream" preload="metadata"></audio>
 
     <script>
-        // Lista de programas con miniaturas medievales estables
+        // Lista de 12 programas con auténticas imágenes medievales e iluminaciones históricas
         const playlist = [
             {
                 title: "Programa I",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa II",
-                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=500&auto=format&fit=crop&q=80"
+                src: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=400&auto=format&fit=crop&q=80",
+                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=400&auto=format&fit=crop&q=80",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
             },
             {
                 title: "Programa III",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-                image: "https://images.unsplash.com/photo-1582561219475-f3e433364fdd?w=500&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1582561219475-f3e433364fdd?w=400&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa IV",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-                image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=400&auto=format&fit=crop&q=80"
+            },
+            {
+                title: "Programa V",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                image: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=400&auto=format&fit=crop&q=80"
+            },
+            {
+                title: "Programa VI",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+                image: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&auto=format&fit=crop&q=80"
+            },
+            {
+                title: "Programa VII",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+                image: "https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?w=400&auto=format&fit=crop&q=80"
+            },
+            {
+                title: "Programa VIII",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=400&auto=format&fit=crop&q=80"
+            },
+            {
+                title: "Programa IX",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&auto=format&fit=crop&q=80"
+            },
+            {
+                title: "Programa X",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+                image: "https://images.unsplash.com/photo-1582561219475-f3e433364fdd?w=400&auto=format&fit=crop&q=80"
+            },
+            {
+                title: "Programa XI",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+                image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=400&auto=format&fit=crop&q=80"
+            },
+            {
+                title: "Programa XII",
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+                image: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=400&auto=format&fit=crop&q=80"
             }
         ];
 
         let currentTrackIndex = 0;
+        let isPlaying = false;
+
         const audioStream = document.getElementById('audio-stream');
         const imageGrid = document.getElementById('image-grid');
+        const gallerySection = document.getElementById('gallery-section');
+        const detailSection = document.getElementById('detail-section');
+        const detailProgramTitle = document.getElementById('detail-program-title');
+        const detailPlayBtn = document.getElementById('detail-play-btn');
+        const detailPlayIcon = document.getElementById('detail-play-icon');
+        const backToGridBtn = document.getElementById('back-to-grid');
+        const mainTitle = document.getElementById('main-title');
 
         audioStream.volume = 0.8;
         renderImageGrid();
@@ -149,28 +294,59 @@
                 div.classList.add('grid-item');
                 div.innerHTML = `<img src="${track.image}" alt="${track.title}">`;
                 
-                // Al hacer clic en cualquier miniatura, suena la música y se ilumina
+                // Al hacer clic, carga el programa, inicia el audio y abre la página de detalle
                 div.addEventListener('click', () => {
                     currentTrackIndex = index;
-                    audioStream.src = track.src;
-                    audioStream.play().catch(err => console.log(err));
-                    highlightActiveImage();
+                    loadAndPlayTrack(currentTrackIndex);
+                    showDetailView(track);
                 });
                 
                 imageGrid.appendChild(div);
             });
         }
 
-        function highlightActiveImage() {
-            const items = imageGrid.querySelectorAll('.grid-item');
-            items.forEach((item, index) => {
-                if (index === currentTrackIndex) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
+        function loadAndPlayTrack(index) {
+            const track = playlist[index];
+            audioStream.src = track.src;
+            audioStream.play().then(() => {
+                isPlaying = true;
+                detailPlayIcon.innerHTML = '<path fill="currentColor" d="M3 2h3v12H3zm7 0h3v12h-3z"/>';
+            }).catch(err => console.log(err));
         }
+
+        function showDetailView(track) {
+            detailProgramTitle.textContent = track.title;
+            gallerySection.style.display = 'none';
+            detailSection.classList.add('active');
+        }
+
+        function hideDetailView() {
+            detailSection.classList.remove('active');
+            gallerySection.style.display = 'block';
+        }
+
+        // Control del botón de Play/Pausa en la vista de detalle
+        detailPlayBtn.addEventListener('click', () => {
+            if (!audioStream.src) {
+                audioStream.src = playlist[currentTrackIndex].src;
+            }
+            if (isPlaying) {
+                audioStream.pause();
+                isPlaying = false;
+                detailPlayIcon.innerHTML = '<path fill="currentColor" d="M3 2l11 6L3 14V2z"/>';
+            } else {
+                audioStream.play().then(() => {
+                    isPlaying = true;
+                    detailPlayIcon.innerHTML = '<path fill="currentColor" d="M3 2h3v12H3zm7 0h3v12h-3z"/>';
+                }).catch(err => console.log(err));
+            }
+        });
+
+        // Botón de volver a la cuadrícula
+        backToGridBtn.addEventListener('click', hideDetailView);
+
+        // Hacer clic en el título principal también devuelve a la cuadrícula
+        mainTitle.addEventListener('click', hideDetailView);
     </script>
 </body>
 </html>
