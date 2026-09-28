@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>traquetines</title>
+    <title>horas muertas</title>
     <!-- Fuente gótica desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     
@@ -37,7 +37,7 @@
             flex-grow: 1;
         }
 
-        /* Título Gótico "horas" */
+        /* Título Gótico "horas muertas" */
         header {
             margin-bottom: 30px;
             text-align: center;
@@ -52,7 +52,7 @@
             cursor: pointer;
         }
 
-        /* Cuadrícula de 12 miniaturas medievales en 2 columnas */
+        /* Cuadrícula de 12 miniaturas en 2 columnas */
         .gallery-section {
             width: 100%;
         }
@@ -84,7 +84,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: contrast(110%) brightness(95%);
+            filter: contrast(115%) brightness(90%);
         }
 
         /* Vista de Detalle del Programa (Oculta por defecto) */
@@ -165,7 +165,7 @@
         
         <!-- Título Gótico Principal (Haz clic para volver al inicio) -->
         <header>
-            <h1 class="gothic-title" id="main-title">traquetines</h1>
+            <h1 class="gothic-title" id="main-title">horas muertas</h1>
         </header>
 
         <!-- SECCIÓN 1: Cuadrícula General (12 Programas en 2 columnas) -->
@@ -173,7 +173,7 @@
             <div id="image-grid" class="image-grid"></div>
         </section>
 
-        <!-- SECCIÓN 2: Vista de Detalle del Programa (Sin icono de play) -->
+        <!-- SECCIÓN 2: Vista de Detalle del Programa -->
         <section id="detail-section" class="detail-view">
             <h2 id="detail-program-title" class="detail-title"></h2>
             <p class="detail-description">
@@ -193,67 +193,67 @@
     <audio id="audio-stream" preload="metadata"></audio>
 
     <script>
-        // Lista de 12 programas con auténticas imágenes medievales e iluminaciones históricas
+        // Lista de 12 programas con temática de vidrieras medievales y música instrumental evocadora
         const playlist = [
             {
                 title: "Programa I",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1548625149-fc4a29cf7092?w=500&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa II",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=400&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=500&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa III",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-                image: "https://images.unsplash.com/photo-1582561219475-f3e433364fdd?w=400&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa IV",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-                image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=400&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1582561219475-f3e433364fdd?w=500&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa V",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                image: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=400&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=500&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa VI",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-                image: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=400&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?w=500&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa VII",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-                image: "https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?w=400&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa VIII",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=400&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=500&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa IX",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=400&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=500&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa X",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-                image: "https://images.unsplash.com/photo-1582561219475-f3e433364fdd?w=400&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1548625149-fc4a29cf7092?w=500&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa XI",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-                image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=400&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1582561219475-f3e433364fdd?w=500&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa XII",
                 src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-                image: "https://images.unsplash.com/photo-1578926375605-eaf7559b1458?w=400&auto=format&fit=crop&q=80"
+                image: "https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?w=500&auto=format&fit=crop&q=80"
             }
         ];
 
