@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>horas muertas</title>
+    <title>traquetines</title>
     <!-- Fuente gótica desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     
@@ -22,7 +22,7 @@
             color: #ffffff !important;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: space-between;
             align-items: center;
             min-height: 100vh;
             padding: 30px 20px;
@@ -30,10 +30,11 @@
 
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            flex-grow: 1;
         }
 
         /* Título Gótico "horas muertas" */
@@ -51,15 +52,15 @@
             cursor: pointer;
         }
 
-        /* Cuadrícula de 12 miniaturas medievales */
+        /* Cuadrícula de 12 miniaturas medievales en 2 columnas */
         .gallery-section {
             width: 100%;
         }
 
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
             width: 100%;
         }
 
@@ -100,37 +101,12 @@
             display: flex;
         }
 
-        /* Icono de reproducción minimalista en la vista de detalle */
-        .detail-player-bar {
-            margin-bottom: 25px;
-        }
-
-        .play-button {
-            background: transparent;
-            border: 2px solid #ffffff;
-            color: #ffffff;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            transition: background 0.2s, transform 0.1s;
-        }
-
-        .play-button:hover {
-            background: #ffffff;
-            color: #000000;
-            transform: scale(1.05);
-        }
-
         /* Título del programa en detalle (Fuente gótica) */
         .detail-title {
             font-family: 'UnifrakturMaguntia', cursive;
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             color: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             letter-spacing: 1px;
         }
 
@@ -141,7 +117,7 @@
             line-height: 1.8;
             color: #cccccc;
             margin-bottom: 35px;
-            max-width: 440px;
+            max-width: 380px;
             letter-spacing: 0.5px;
         }
 
@@ -164,6 +140,19 @@
             color: #ffffff;
         }
 
+        /* Pie de página con "hecho con irreverencia" */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1rem;
+            color: #555555;
+            letter-spacing: 1px;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
@@ -179,20 +168,13 @@
             <h1 class="gothic-title" id="main-title">horas muertas</h1>
         </header>
 
-        <!-- SECCIÓN 1: Cuadrícula General (12 Programas) -->
+        <!-- SECCIÓN 1: Cuadrícula General (12 Programas en 2 columnas) -->
         <section id="gallery-section" class="gallery-section">
             <div id="image-grid" class="image-grid"></div>
         </section>
 
-        <!-- SECCIÓN 2: Vista de Detalle del Programa -->
+        <!-- SECCIÓN 2: Vista de Detalle del Programa (Sin icono de play) -->
         <section id="detail-section" class="detail-view">
-            <div class="detail-player-bar">
-                <button id="detail-play-btn" class="play-button" title="Reproducir / Pausa">
-                    <svg id="detail-play-icon" viewBox="0 0 16 16" width="18" height="18">
-                        <path fill="currentColor" d="M3 2l11 6L3 14V2z"/>
-                    </svg>
-                </button>
-            </div>
             <h2 id="detail-program-title" class="detail-title"></h2>
             <p class="detail-description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -201,6 +183,11 @@
         </section>
 
     </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <p class="footer-text">hecho con irreverencia</p>
+    </footer>
 
     <!-- Elemento de audio global -->
     <audio id="audio-stream" preload="metadata"></audio>
@@ -215,9 +202,8 @@
             },
             {
                 title: "Programa II",
-                src: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=400&auto=format&fit=crop&q=80",
-                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=400&auto=format&fit=crop&q=80",
-                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+                image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=400&auto=format&fit=crop&q=80"
             },
             {
                 title: "Programa III",
@@ -271,16 +257,11 @@
             }
         ];
 
-        let currentTrackIndex = 0;
-        let isPlaying = false;
-
         const audioStream = document.getElementById('audio-stream');
         const imageGrid = document.getElementById('image-grid');
         const gallerySection = document.getElementById('gallery-section');
         const detailSection = document.getElementById('detail-section');
         const detailProgramTitle = document.getElementById('detail-program-title');
-        const detailPlayBtn = document.getElementById('detail-play-btn');
-        const detailPlayIcon = document.getElementById('detail-play-icon');
         const backToGridBtn = document.getElementById('back-to-grid');
         const mainTitle = document.getElementById('main-title');
 
@@ -294,24 +275,15 @@
                 div.classList.add('grid-item');
                 div.innerHTML = `<img src="${track.image}" alt="${track.title}">`;
                 
-                // Al hacer clic, carga el programa, inicia el audio y abre la página de detalle
+                // Al hacer clic, reproduce automáticamente la música de fondo y muestra la vista de detalle
                 div.addEventListener('click', () => {
-                    currentTrackIndex = index;
-                    loadAndPlayTrack(currentTrackIndex);
+                    audioStream.src = track.src;
+                    audioStream.play().catch(err => console.log(err));
                     showDetailView(track);
                 });
                 
                 imageGrid.appendChild(div);
             });
-        }
-
-        function loadAndPlayTrack(index) {
-            const track = playlist[index];
-            audioStream.src = track.src;
-            audioStream.play().then(() => {
-                isPlaying = true;
-                detailPlayIcon.innerHTML = '<path fill="currentColor" d="M3 2h3v12H3zm7 0h3v12h-3z"/>';
-            }).catch(err => console.log(err));
         }
 
         function showDetailView(track) {
@@ -324,23 +296,6 @@
             detailSection.classList.remove('active');
             gallerySection.style.display = 'block';
         }
-
-        // Control del botón de Play/Pausa en la vista de detalle
-        detailPlayBtn.addEventListener('click', () => {
-            if (!audioStream.src) {
-                audioStream.src = playlist[currentTrackIndex].src;
-            }
-            if (isPlaying) {
-                audioStream.pause();
-                isPlaying = false;
-                detailPlayIcon.innerHTML = '<path fill="currentColor" d="M3 2l11 6L3 14V2z"/>';
-            } else {
-                audioStream.play().then(() => {
-                    isPlaying = true;
-                    detailPlayIcon.innerHTML = '<path fill="currentColor" d="M3 2h3v12H3zm7 0h3v12h-3z"/>';
-                }).catch(err => console.log(err));
-            }
-        });
 
         // Botón de volver a la cuadrícula
         backToGridBtn.addEventListener('click', hideDetailView);
