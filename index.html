@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>traquetines</title>
-    <!-- Fuentes desde Google Fonts: Gótica para títulos y Sans-Serif para lectura -->
-<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <!-- Fuentes desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     
     <style>
         /* Reseteo global */
@@ -17,7 +17,7 @@
 
         /* Fondo negro puro absoluto y centrado */
         body {
-            font-family: 'MedievalSharp', sans-serif;
+            font-family: 'MedievalSharp', cursive;
             background-color: #000000 !important;
             color: #ffffff !important;
             display: flex;
@@ -37,7 +37,7 @@
             flex-grow: 1;
         }
 
-        /* Título Gótico "traquetines" */
+        /* Título Gótico Principal "traquetines" */
         header {
             margin-bottom: 30px;
             text-align: center;
@@ -106,7 +106,7 @@
             display: flex;
         }
 
-        /* Título del programa en detalle (Fuente Gótica) */
+        /* Título del programa en detalle */
         .detail-title {
             font-family: 'UnifrakturMaguntia', cursive;
             font-size: 2.4rem;
@@ -116,58 +116,68 @@
             text-align: center;
         }
 
-        /* Contenedor principal donde se mezclan párrafos e imágenes */
+        /* Contenedor principal de texto y bloques flotados */
         .detail-content {
             width: 100%;
             max-width: 380px;
-            display: flex;
-            flex-direction: column;
-            gap: 22px;
+            display: block; /* Permite flujo de texto alrededor de elementos flotados */
             margin-bottom: 30px;
+            /* Limpiador de flotados al final */
+            overflow: hidden; 
         }
 
-        /* Estilo de los párrafos de texto (Fuente limpia y legible 'Inter') */
+        /* Estilo de los párrafos de texto (MedievalSharp) */
         .detail-paragraph {
-            font-family: 'MedievalSharp', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 300;
-            line-height: 1;
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.05rem;
+            line-height: 1.6;
             color: #cccccc;
-            letter-spacing: 0.1px;
+            letter-spacing: 0.5px;
             text-align: justify;
             text-justify: inter-word;
+            margin-bottom: 15px; /* Espacio entre párrafos */
         }
 
-        /* Estilo para las imágenes intercaladas a un tamaño menor y elegante */
+        /* Bloque de imagen flotada con ancho ajustado automáticamente al contenido */
         .inline-image-block {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 5px 0;
+            display: inline-block;
+            max-width: 45%; /* Límite para que no acapare toda la pantalla */
+            margin-bottom: 10px;
+        }
+
+        /* Clases para alternar o fijar la posición a izquierda o derecha */
+        .float-left {
+            float: left;
+            margin-right: 15px;
+        }
+
+        .float-right {
+            float: right;
+            margin-left: 15px;
         }
 
         .inline-image-block img {
-            width: 45%; /* Tamaño notablemente más pequeño e integrado */
-            max-width: 150px;
+            width: 100%;
             aspect-ratio: 1 / 1;
             object-fit: cover;
             border: 1px solid #333333;
             border-radius: 4px;
             filter: contrast(115%) brightness(90%);
-            margin-bottom: 6px;
+            display: block;
         }
 
-        /* Pie de foto pequeño (Fuente gótica sutil) */
+        /* Pie de foto ajustado estrictamente a la longitud de la foto */
         .inline-caption {
-            font-family: 'MedievalSharp', cursive;
-            font-size: 0.85rem;
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 0.8rem;
             color: #777777;
             letter-spacing: 0.5px;
             text-align: center;
+            margin-top: 5px;
+            line-height: 1.2;
         }
 
-        /* Botón de regreso (Fuente gótica) */
+        /* Botón de regreso */
         .back-btn {
             background: transparent;
             border: 1px solid #444444;
@@ -187,7 +197,7 @@
             color: #ffffff;
         }
 
-        /* Pie de página con "hecho con irreverencia" (Fuente gótica) */
+        /* Pie de página */
         footer {
             margin-top: 40px;
             text-align: center;
@@ -215,7 +225,7 @@
             <h1 class="gothic-title" id="main-title">traquetines</h1>
         </header>
 
-        <!-- SECCIÓN 1: Cuadrícula General (12 Programas en 2 columnas) -->
+        <!-- SECCIÓN 1: Cuadrícula General -->
         <section id="gallery-section" class="gallery-section">
             <div id="image-grid" class="image-grid"></div>
         </section>
@@ -224,7 +234,7 @@
         <section id="detail-section" class="detail-view">
             <h2 id="detail-program-title" class="detail-title"></h2>
             
-            <!-- Contenedor dinámico donde se intercalarán párrafos e imágenes -->
+            <!-- Contenedor dinámico -->
             <div id="detail-content-container" class="detail-content"></div>
             
             <button id="back-to-grid" class="back-btn">← Volver</button>
@@ -234,59 +244,64 @@
 
     <!-- Pie de página -->
     <footer>
-        <p class="footer-text">Hecho con irreverencia</p>
+        <p class="footer-text">hecho con irreverencia</p>
     </footer>
 
     <!-- Elemento de audio global -->
     <audio id="audio-stream" preload="metadata"></audio>
 
     <script>
-        // Lista de programas con texto (Inter) e imágenes reducidas intercaladas
+        // Lista de programas con contenido mixto (texto e imágenes flotadas)
         const playlist = [
             {
-                title: "programa 1",
+                title: "Programa 1",
                 src: "music/dd.mp3",
-                thumbnail: "images/1.jpg",
+                thumbnail: "images/1.jpg", 
                 content: [
                     {
                         type: "text",
                         text: "En este primer capítulo exploramos las danzas instrumentales de la baja edad media, donde los juglares recorrían los burgos interpretando estampies a los pies de las murallas."
                     },
                     {
-                                                type: "image",
-                        url: "images/13.jpg",
-                        caption: "Ritter Hiltbolt von Schwangau (Codex Manesse, s. XIV)"
+                        type: "image",
+                        url: "images/13.jpg", 
+                        caption: "Ritter Hiltbolt von Schwangau",
+                        float: "left" // Puedes cambiar dinámicamente a 'left' o 'right'
                     },
                     {
                         type: "text",
-                        text: "La estructura rítmica de estas piezas revela un pulso terrenal, desprovisto de la rigidez litúrgica y adaptado al movimiento de las cortes señoriales."
+                        text: "La estructura rítmica de estas piezas revela un pulso terrenal, desprovisto de la rigidez litúrgica y adaptado al movimiento de las cortes señoriales. Los instrumentos de viento y cuerda hacían eco en plazas y callejuelas estrechas."
                     },
                     {
-                                                type: "image",
+                        type: "image",
                         url: "images/14.jpg",
-                        caption: "Músicos itinerantes en miniatura alfonsí"
+                        caption: "Músicos itinerantes",
+                        float: "right"
                     }
                 ]
             },
             {
                 title: "Programa II",
-                              src: "music/dd.mp3",
-                thumbnail: "images/2.jpg",  content: [
+               src: "music/dd.mp3",
+                thumbnail: "images/2.jpg",
+                content: [
                     {
                         type: "text",
                         text: "Una inmersión profunda en la escuela de Notre-Dame y el organum polifónico. Las catedrales góticas resonaban con estas complejas arquitecturas vocales esculpidas en piedra y aire."
                     },
                     {
                         type: "image",
-                        url: "images/14.jpg",
-                        caption: "Walther von der Vogelweide"
+                        url: "images/programa2-detalle.jpg",
+                        caption: "Walther von der Vogelweide",
+                        float: "left"
                     }
                 ]
             },
             {
                 title: "Programa III",
-                              src: "music/dd.mp3",
-                thumbnail: "images/3.jpg",  content: [
+                src: "music/dd.mp3",
+                thumbnail: "images/3.jpg",
+                content: [
                     {
                         type: "text",
                         text: "La obra cumbre de Guillaume de Machaut analizada nota a nota. La polifonía del Ars Nova redefine la devoción religiosa a través de un misticismo terrenal y sofisticado."
@@ -295,8 +310,9 @@
             },
             {
                 title: "Programa IV",
-                               src: "music/dd.mp3",
-                thumbnail: "images/4.jpg",  content: [
+                src: "music/dd.mp3",
+                thumbnail: "images/4.jpg",
+                content: [
                     {
                         type: "text",
                         text: "Cantigas de Alfonso X el Sabio. Un puente sonoro entre las culturas cristiana, judía y musulmana de la península ibérica medieval impregnado de lirismo devocional."
@@ -305,8 +321,9 @@
             },
             {
                 title: "Programa V",
-                                src: "music/dd.mp3",
-                thumbnail: "images/5.jpg",  content: [
+                src: "music/dd.mp3",
+                thumbnail: "images/5.jpg",
+                content: [
                     {
                         type: "text",
                         text: "Las visiones místicas convertidas en melodías monofónicas por Hildegard von Bingen. Cantos celestiales que desafiaron los límites de la tesitura vocal de su época."
@@ -315,8 +332,9 @@
             },
             {
                 title: "Programa VI",
-                             src: "music/dd.mp3",
-                thumbnail: "images/6.jpg",   content: [
+                src: "music/dd.mp3",
+                thumbnail: "images/6.jpg",
+                content: [
                     {
                         type: "text",
                         text: "El contrapunto inglés de John Dunstaple y su influencia en el continente. Armonías diáfanas y acordes plenos que anticipaban la llegada del Renacimiento."
@@ -325,8 +343,9 @@
             },
             {
                 title: "Programa VII",
-                              src: "music/dd.mp3",
-                thumbnail: "images/7.jpg",    content: [
+                src: "music/dd.mp3",
+                thumbnail: "images/7.jpg",
+                content: [
                     {
                         type: "text",
                         text: "Estela do dia: la fama de las cantigas marianas analizada desde la perspectiva de la monodia cortesana medieval y los instrumentos de cuerda frotada."
@@ -335,8 +354,9 @@
             },
             {
                 title: "Programa VIII",
-                               src: "music/dd.mp3",
-                thumbnail: "images/8.jpg",   content: [
+                src: "music/dd.mp3",
+                thumbnail: "images/8.jpg",
+                content: [
                     {
                         type: "text",
                         text: "Nuevas variaciones sobre repertorios anónimos de tablatura instrumental antigua. Un ejercicio de arqueología sonora interpretado con criterios históricos."
@@ -345,8 +365,9 @@
             },
             {
                 title: "Programa IX",
-                               src: "music/dd.mp3",
-                thumbnail: "images/9.jpg",  content: [
+                src: "music/dd.mp3",
+                thumbnail: "images/9.jpg",
+                content: [
                     {
                         type: "text",
                         text: "La instrumentación medieval en los manuscritos alfonsíes: cítolas, laudes y fiedles dialogando en una atmósfera de rigurosa contemplación estética."
@@ -355,8 +376,9 @@
             },
             {
                 title: "Programa X",
-                              src: "music/dd.mp3",
-                thumbnail: "images/10.jpg",  content: [
+                src: "music/dd.mp3",
+                thumbnail: "images/10.jpg",
+                content: [
                     {
                         type: "text",
                         text: "El arpa gótica y su papel litúrgico y profano en las cortes centroeuropeas del siglo XIV. El sonido íntimo de la cuerda pulsada sobre caja de madera."
@@ -365,8 +387,9 @@
             },
             {
                 title: "Programa XI",
-                              src: "music/dd.mp3",
-                thumbnail: "images/11.jpg",  content: [
+                src: "music/dd.mp3",
+                thumbnail: "images/11.jpg",
+                content: [
                     {
                         type: "text",
                         text: "Minnesänger y trovadores alemanes: la poesía cantada como vehículo de transmisión cultural, amor cortés y crónica social de los feudos medievales."
@@ -375,8 +398,9 @@
             },
             {
                 title: "Programa XII",
-                            src: "music/dd.mp3",
-                thumbnail: "images/12.jpg",    content: [
+                src: "music/dd.mp3",
+                thumbnail: "images/12.jpg",
+                content: [
                     {
                         type: "text",
                         text: "Clausura del ciclo con el repertorio sacro de abadías y conventos femeninos. El canto llano como forma de meditación atemporal en la penumbra monástica."
@@ -427,7 +451,10 @@
                     detailContentContainer.appendChild(p);
                 } else if (block.type === 'image') {
                     const imgDiv = document.createElement('div');
-                    imgDiv.classList.add('inline-image-block');
+                    // Asignación de la clase float según se indique en los datos (por defecto 'float-left')
+                    const floatClass = block.float === 'right' ? 'float-right' : 'float-left';
+                    imgDiv.classList.add('inline-image-block', floatClass);
+                    
                     imgDiv.innerHTML = `
                         <img src="${block.url}" alt="${track.title}">
                         <p class="inline-caption">${block.caption}</p>
