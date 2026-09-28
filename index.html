@@ -4,23 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>horas muertas</title>
-    <!-- Importamos AMBAS fuentes de Google Fonts en un solo enlace -->
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <!-- Fuente gótica desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     
-    <style>
-        /* Títulos con fuente gótica */
-        .gothic-title, .detail-title {
-            font-family: 'UnifrakturMaguntia', cursive;
-        }
-
-        /* Descripciones con fuente rústica de manuscrito */
-        .detail-description {
-            font-family: 'MedievalSharp', cursive;
-            font-size: 1.2rem;
-            color: #cccccc;
-        }
-
-        /* Resto de tus estilos... */
     <style>
         /* Reseteo global */
         * {
@@ -65,10 +51,13 @@
             letter-spacing: 2px;
             cursor: pointer;
         }
-.color-red { color: #ff3333 !important; text-shadow: 0 0 8px rgba(255, 51, 51, 0.4); }
+
+        /* Clases de colores aleatorios para las 4 letras */
+        .color-red { color: #ff3333 !important; text-shadow: 0 0 8px rgba(255, 51, 51, 0.4); }
         .color-yellow { color: #ffd700 !important; text-shadow: 0 0 8px rgba(255, 215, 0, 0.4); }
         .color-green { color: #33cc66 !important; text-shadow: 0 0 8px rgba(51, 204, 102, 0.4); }
         .color-blue { color: #3399ff !important; text-shadow: 0 0 8px rgba(51, 153, 255, 0.4); }
+
         /* Cuadrícula de 12 miniaturas en 2 columnas */
         .gallery-section {
             width: 100%;
@@ -104,13 +93,12 @@
             filter: contrast(115%) brightness(90%);
         }
 
-        /* Vista de Detalle del programa (Oculta por defecto) */
+        /* Vista de Detalle del Programa (Oculta por defecto) */
         .detail-view {
             display: none;
             width: 100%;
             flex-direction: column;
             align-items: center;
-            text-align: center;
             animation: fadeIn 0.3s ease-in-out;
         }
 
@@ -118,27 +106,63 @@
             display: flex;
         }
 
-        /* Título del programa en detalle (Fuente gótica) */
+        /* Título del programa en detalle */
         .detail-title {
             font-family: 'UnifrakturMaguntia', cursive;
             font-size: 2.4rem;
             color: #ffffff;
             margin-bottom: 25px;
             letter-spacing: 1px;
+            text-align: center;
         }
 
-        /* Descripción Lorem Ipsum centrada (Fuente gótica) */
+        /* Descripción JUSTIFICADA y personalizada para cada programa */
         .detail-description {
-            font-family: 'MedievalSharp', cursive;
-            font-size: 1rem;
-            line-height: 1.2;
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 1.15rem;
+            line-height: 1.8;
             color: #cccccc;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             max-width: 380px;
-            letter-spacing: 0.2px;
-            text-align: justify; /* ¡TEXTO JUSTIFICADO AQUÍ! */
-            text-justify: inter-word; /* Mejora el espaciado al justificar */
-            hyphens: auto; /* Permite guiones si el texto es muy denso */
+            letter-spacing: 0.5px;
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+        }
+
+        /* Contenedor para la lista de imágenes con sus pies de foto */
+        .detail-images-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .image-block {
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .image-block img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border: 1px solid #333333;
+            border-radius: 4px;
+            filter: contrast(115%) brightness(90%);
+            margin-bottom: 8px;
+        }
+
+        /* Pie de foto de cada imagen */
+        .image-caption {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 0.95rem;
+            color: #888888;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
         }
 
         /* Botón de regreso */
@@ -153,6 +177,7 @@
             cursor: pointer;
             transition: all 0.2s;
             letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
         .back-btn:hover {
@@ -183,26 +208,26 @@
 
     <div class="container">
         
-        <!-- Título Gótico Principal (Haz clic para volver al inicio) -->
+        <!-- Título Gótico Principal con letras dinámicas -->
         <header>
-            <h1 class="gothic-title" id="main-title">traquetines</h1>
+            <h1 class="gothic-title" id="main-title">horas muertas</h1>
         </header>
 
-        <!-- SECCIÓN 1: Cuadrícula General (12 programas en 2 columnas) -->
+        <!-- SECCIÓN 1: Cuadrícula General (12 Programas en 2 columnas) -->
         <section id="gallery-section" class="gallery-section">
             <div id="image-grid" class="image-grid"></div>
         </section>
 
-        <!-- SECCIÓN 2: Vista de Detalle del programa -->
+        <!-- SECCIÓN 2: Vista de Detalle del Programa -->
         <section id="detail-section" class="detail-view">
             <h2 id="detail-program-title" class="detail-title"></h2>
-            <p class="detail-description">
-                Guillaume de Machaut (también Machault) (Machault, Reims, c. 1300 – Reims, abril de 1377) fue un clérigo, poeta y compositor medieval francés. Su proyección fue enorme y es históricamente el máximo representante del movimiento conocido como Ars nova, siendo considerado el más célebre compositor del siglo xiv. Contribuyó al desarrollo del motete y de la canción secular. Compuso la Misa de Notre Dame en cuatro partes, que es la primera misa polifónica conocida escrita por un solo compositor. Su forma de componer, tanto en su producción religiosa como profana, influyó en numerosos compositores posteriores. Machaut nació alrededor del año 1300 y fue educado en algún lugar cercano a Reims. Su apellido parece derivar de la cercana ciudad de Machault, a unos 30 km al este de Reims en la región de las Ardenas, aunque la mayoría de los musicólogos coinciden en que su lugar de nacimiento fue el mismo Reims. Fue secretario de Juan I, conde de Luxemburgo y rey de Bohemia, del año 1323 a 1346. Además se hizo canónigo durante ese período. A menudo acompañaba al rey Juan en sus varios viajes y expediciones militares alrededor de Europa (incluso a Praga). Fue nombrado canónigo de Verdún en 1330, de Arras en 1332 y de Reims en 1333. En 1340, cuando vivía en Reims, renunció a su puesto de canónigo a petición del papa Benedicto XII. En 1346 el rey Juan falleció en la Batalla de Crécy y Machaut, que ya era famoso, pasó a prestar sus servicios a otros aristócratas y mandatarios, incluida la hija del rey Juan, Bona de Luxemburgo (que murió de peste negra en 1349), Carlos II de Navarra, Jean de Berry y Carlos, Duque de Normandía, quién se convertiría en el rey Carlos V de Francia en 1364.
+            
+            <!-- Descripción individual de cada programa -->
+            <p id="detail-desc" class="detail-description"></p>
 
-Machaut sobrevivió a la peste negra que devastó Europa y pasó los últimos años de su vida viviendo en Reims, componiendo y supervisando todos los manuscritos de su obra. Su poema Le Voir Dit (probablemente compuesto entre 1361 y 1365) parece ser autobiográfico, memorando una antigua relación amorosa con Péronne d'Armentières, una chica joven de diecinueve años, aunque esto es objeto de controversia.
-
-Cuando Guillaume murió en 1377, otros compositores, como François Andrieu, escribieron elegías lamentando su muerte.
-            </p>
+            <!-- Contenedor dinámico para múltiples imágenes y sus pies de foto -->
+            <div id="detail-images-list" class="detail-images-container"></div>
+            
             <button id="back-to-grid" class="back-btn">← Volver</button>
         </section>
 
@@ -210,19 +235,142 @@ Cuando Guillaume murió en 1377, otros compositores, como François Andrieu, esc
 
     <!-- Pie de página -->
     <footer>
-        <p class="footer-text">Hecho con irreverencia</p>
+        <p class="footer-text">hecho con irreverencia</p>
     </footer>
 
     <!-- Elemento de audio global -->
     <audio id="audio-stream" preload="metadata"></audio>
 
     <script>
-        // Lista de 12 programas con miniaturas y piezas musicales reales extraídas de Wikimedia Commons
+        // Lista de programas con descripción INDIVIDUAL y VARIAS IMÁGENES con pies de foto
         const playlist = [
             {
-                title: "programa 1",
-                src: "music/dd.mp3",
-                image: "images/1.jpg",
+                title: "Programa I",
+                src: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Anonymous_-_Estampie_-_keyboard_version.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Codex_Manesse_Ritter_Hiltbolt_von_Schwangau.jpg/400px-Codex_Manesse_Ritter_Hiltbolt_von_Schwangau.jpg",
+                description: "En este primer capítulo exploramos las danzas instrumentales de la baja edad media, donde los juglares recorrían los burgos interpretando estampies a los pies de las murallas.",
+                images: [
+                    {
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Codex_Manesse_Ritter_Hiltbolt_von_Schwangau.jpg/400px-Codex_Manesse_Ritter_Hiltbolt_von_Schwangau.jpg",
+                        caption: "Ritter Hiltbolt von Schwangau (Codex Manesse, s. XIV)"
+                    },
+                    {
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cantigas_de_Santa_Maria_-_musicians.jpg/400px-Cantigas_de_Santa_Maria_-_musicians.jpg",
+                        caption: "Músicos itinerantes en miniatura alfonsí"
+                    }
+                ]
+            },
+            {
+                title: "Programa II",
+                src: "https://upload.wikimedia.org/wikipedia/commons/8/82/Perotin_-_Viderunt_Omnes_%28Ensemble_Organum%29.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Codex_Manesse_Walther_von_der_Vogelweide.jpg/400px-Codex_Manesse_Walther_von_der_Vogelweide.jpg",
+                description: "Una inmersión profunda en la escuela de Notre-Dame y el organum polifónico. Las catedrales góticas resonaban con estas complejas arquitecturas vocales esculpidas en piedra y aire.",
+                images: [
+                    {
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Codex_Manesse_Walther_von_der_Vogelweide.jpg/400px-Codex_Manesse_Walther_von_der_Vogelweide.jpg",
+                        caption: "Walther von der Vogelweide (Codex Manesse)"
+                    }
+                ]
+            },
+            {
+                title: "Programa III",
+                src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Guillaume_de_Machaut_-_Messe_de_nostre_dame_-_Kyrie.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Tres_Riches_Heures_du_Duc_de_Berry_avril.jpg/400px-Tres_Riches_Heures_du_Duc_de_Berry_avril.jpg",
+                description: "La obra cumbre de Guillaume de Machaut analizada nota a nota. La polifonía del Ars Nova redefine la devoción religiosa a través de un misticismo terrenal y sofisticado.",
+                images: [
+                    {
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Tres_Riches_Heures_du_Duc_de_Berry_avril.jpg/400px-Tres_Riches_Heures_du_Duc_de_Berry_avril.jpg",
+                        caption: "Les Très Riches Heures du Duc de Berry (Mes de Abril)"
+                    }
+                ]
+            },
+            {
+                title: "Programa IV",
+                src: "https://upload.wikimedia.org/wikipedia/commons/3/36/Cantigas_de_Santa_Maria_No._166_-_Como_pod_a_Groriosa.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Tres_Riches_Heures_du_Duc_de_Berry_juin.jpg/400px-Tres_Riches_Heures_du_Duc_de_Berry_juin.jpg",
+                description: "Cantigas de Alfonso X el Sabio. Un puente sonoro entre las culturas cristiana, judía y musulmana de la península ibérica medieval impregnado de lirismo devocional.",
+                images: [
+                    {
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Tres_Riches_Heures_du_Duc_de_Berry_juin.jpg/400px-Tres_Riches_Heures_du_Duc_de_Berry_juin.jpg",
+                        caption: "Les Très Riches Heures du Duc de Berry (Mes de Junio)"
+                    }
+                ]
+            },
+            {
+                title: "Programa V",
+                src: "https://upload.wikimedia.org/wikipedia/commons/4/45/Hildegard_von_Bingen_-_O_viridis_diadema.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Belles_Heures_du_Duc_de_Berry_-_fol._211v%2C_The_Flight_into_Egypt.jpg/400px-Belles_Heures_du_Duc_de_Berry_-_fol._211v%2C_The_Flight_into_Egypt.jpg",
+                description: "Las visiones místicas convertidas en melodías monofónicas por Hildegard von Bingen. Cantos celestiales que desafiaron los límites de la tesitura vocal de su época.",
+                images: [
+                    {
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Belles_Heures_du_Duc_de_Berry_-_fol._211v%2C_The_Flight_into_Egypt.jpg/400px-Belles_Heures_du_Duc_de_Berry_-_fol._211v%2C_The_Flight_into_Egypt.jpg",
+                        caption: "Belles Heures du Duc de Berry (Huida a Egipto)"
+                    }
+                ]
+            },
+            {
+                title: "Programa VI",
+                src: "https://upload.wikimedia.org/wikipedia/commons/a/a2/John_Dunstaple_-_Quam_pulchra_es.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Hortus_Deliciarum%2C_Höllensturz.jpg/400px-Hortus_Deliciarum%2C_Höllensturz.jpg",
+                description: "El contrapunto inglés de John Dunstaple y su influencia en el continente. Armonías diáfanas y acordes plenos que anticipaban la llegada del Renacimiento.",
+                images: [
+                    {
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Hortus_Deliciarum%2C_Höllensturz.jpg/400px-Hortus_Deliciarum%2C_Höllensturz.jpg",
+                        caption: "Hortus Deliciarum (Caída de los condenados)"
+                    }
+                ]
+            },
+            {
+                title: "Programa VII",
+                src: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Alfonso_X_el_Sabio_-_Cantiga_100_%28Santa_Maria_strela_do_dia%29.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Biblia_maciejowska_-_The_Morgan_Library_%26_Museum_-_MS_M.638%2C_fol._3v.jpg/400px-Biblia_maciejowska_-_The_Morgan_Library_%26_Museum_-_MS_M.638%2C_fol._3v.jpg",
+                description: "Estela do dia: la fama de las cantigas marianas analizada desde la perspectiva de la monodia cortesana medieval y los instrumentos de cuerda frotada.",
+                images: [
+                    {
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Biblia_maciejowska_-_The_Morgan_Library_%26_Museum_-_MS_M.638%2C_fol._3v.jpg/400px-Biblia_maciejowska_-_The_Morgan_Library_%26_Museum_-_MS_M.638%2C_fol._3v.jpg",
+                        caption: "Biblia de Maciejowski (The Morgan Library & Museum)"
+                    }
+                ]
+            },
+            {
+                title: "Programa VIII",
+                src: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Anonymous_-_Estampie_-_keyboard_version.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Codex_Manesse_Der_Kanzler_von_Pauren.jpg/400px-Codex_Manesse_Der_Kanzler_von_Pauren.jpg",
+                description: "Nuevas variaciones sobre repertorios anónimos de tablatura instrumental antigua. Un ejercicio de arqueología sonora interpretado con criterios históricos.",
+                images: [
+                    {
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Codex_Manesse_Der_Kanzler_von_Pauren.jpg/400px-Codex_Manesse_Der_Kanzler_von_Pauren.jpg",
+                        caption: "Der Kanzler von Pauren (Codex Manesse)"
+                    }
+                ]
+            },
+            {
+                title: "Programa IX",
+                src: "https://upload.wikimedia.org/wikipedia/commons/8/82/Perotin_-_Viderunt_Omnes_%28Ensemble_Organum%29.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cantigas_de_Santa_Maria_-_musicians.jpg/400px-Cantigas_de_Santa_Maria_-_musicians.jpg",
+                description: "La instrumentación medieval en los manuscritos alfonsíes: cítolas, laudes y fiedles dialogando en una atmósfera de rigurosa contemplación estética.",
+                images: [
+                    {
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cantigas_de_Santa_Maria_-_musicians.jpg/400px-Cantigas_de_Santa_Maria_-_musicians.jpg",
+                        caption: "Músicos medievales en las Cantigas"
+                    }
+                ]
+            },
+            {
+                title: "Programa X",
+                src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Guillaume_de_Machaut_-_Messe_de_nostre_dame_-_Kyrie.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Wenceslas_Bible_-_David_playing_harp.jpg/400px-Wenceslas_Bible_-_David_playing_harp.jpg",
+                description: "El arpa gótica y su papel litúrgico y profano en las cortes centroeuropeas del siglo XIV. El sonido íntimo de la cuerda pulsada sobre caja de madera.",
+                images: [
+                    {
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Wenceslas_Bible_-_David_playing_harp.jpg/400px-Wenceslas_Bible_-_David_playing_harp.jpg",
+                        caption: "Biblia de Wenceslao - Rey David con el arpa"
+                    }
+                ]
+            },
+            {
+                title: "Programa XI",
+                src: "https://upload.wikimedia.org/wikipedia/commons/3/36/Cantigas_de_Santa_Maria_No._166_-_Como_pod_a_Groriosa.ogg",
                 thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Hit_from_Codex_Manesse.jpg/400px-Hit_from_Codex_Manesse.jpg",
                 description: "Minnesänger y trovadores alemanes: la poesía cantada como vehículo de transmisión cultural, amor cortés y crónica social de los feudos medievales.",
                 images: [
@@ -233,59 +381,16 @@ Cuando Guillaume murió en 1377, otros compositores, como François Andrieu, esc
                 ]
             },
             {
-                title: "programa 2",
-                src: "music/dd.mp3",
-                image: "images/2.jpg"
-            },
-            {
-                title: "programa 3",
-                src: "music/dd.mp3",
-                image: "images/3.jpg"
-            },
-            {
-                title: "programa 4",
-                src: "music/dd.mp3",
-                image: "images/4.jpg"
-            },
-            {
-                title: "programa 5",
-                src: "music/dd.mp3",
-                image: "images/5.jpg"
-            },
-            {
-                title: "programa 6",
-                src: "music/dd.mp3",
-                image: "images/6.jpg"
-            },
-            {
-                title: "programa 7",
-                src: "music/dd.mp3",
-                image: "images/7.jpg"
-            },
-            {
-                title: "programa 8",
-                src: "music/dd.mp3",
-                image: "images/8.jpg"
-            },
-            {
-                title: "programa 9",
-                src: "music/dd.mp3",
-                image: "images/9.jpg"
-            },
-            {
-                title: "programa 10",
-                src: "music/dd.mp3",
-                image: "images/10.jpg"
-            },
-            {
-                title: "programa 11",
-                src: "music/dd.mp3",
-                image: "images/11.jpg"
-            },
-            {
-                title: "programa 12",
-                src: "music/dd.mp3",
-                image: "images/12.jpg"
+                title: "Programa XII",
+                src: "https://upload.wikimedia.org/wikipedia/commons/4/45/Hildegard_von_Bingen_-_O_viridis_diadema.ogg",
+                thumbnail: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Bible_historiale_-_French_miniature_14th_century.jpg/400px-Bible_historiale_-_French_miniature_14th_century.jpg",
+                description: "Clausura del ciclo con el repertorio sacro de abadías y conventos femeninos. El canto llano como forma de meditación atemporal en la penumbra monástica.",
+                images: [
+                    {
+                        url: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Bible_historiale_-_French_miniature_14th_century.jpg/400px-Bible_historiale_-_French_miniature_14th_century.jpg",
+                        caption: "Bible historiale - Miniatura francesa del siglo XIV"
+                    }
+                ]
             }
         ];
 
@@ -294,20 +399,22 @@ Cuando Guillaume murió en 1377, otros compositores, como François Andrieu, esc
         const gallerySection = document.getElementById('gallery-section');
         const detailSection = document.getElementById('detail-section');
         const detailProgramTitle = document.getElementById('detail-program-title');
+        const detailDesc = document.getElementById('detail-desc');
+        const detailImagesList = document.getElementById('detail-images-list');
         const backToGridBtn = document.getElementById('back-to-grid');
-        const mainTitle = document.getElementById('main-title');
+        const mainTitleContainer = document.getElementById('main-title');
 
         audioStream.volume = 0.8;
         renderImageGrid();
+        colorizeRandomLetters();
 
         function renderImageGrid() {
             imageGrid.innerHTML = '';
-            playlist.forEach((track, index) => {
+            playlist.forEach((track) => {
                 const div = document.createElement('div');
                 div.classList.add('grid-item');
-                div.innerHTML = `<img src="${track.image}" alt="${track.title}">`;
+                div.innerHTML = `<img src="${track.thumbnail}" alt="${track.title}">`;
                 
-                // Al hacer clic, reproduce automáticamente la música de Wikimedia Commons y muestra la vista de detalle
                 div.addEventListener('click', () => {
                     audioStream.src = track.src;
                     audioStream.play().catch(err => console.log(err));
@@ -320,6 +427,20 @@ Cuando Guillaume murió en 1377, otros compositores, como François Andrieu, esc
 
         function showDetailView(track) {
             detailProgramTitle.textContent = track.title;
+            detailDesc.textContent = track.description;
+
+            // Limpiamos y rellenamos el contenedor con todas las imágenes y pies de foto de este programa
+            detailImagesList.innerHTML = '';
+            track.images.forEach(imgObj => {
+                const imgBlock = document.createElement('div');
+                imgBlock.classList.add('image-block');
+                imgBlock.innerHTML = `
+                    <img src="${imgObj.url}" alt="${track.title}">
+                    <p class="image-caption">${imgObj.caption}</p>
+                `;
+                detailImagesList.appendChild(imgBlock);
+            });
+
             gallerySection.style.display = 'none';
             detailSection.classList.add('active');
         }
@@ -329,11 +450,38 @@ Cuando Guillaume murió en 1377, otros compositores, como François Andrieu, esc
             gallerySection.style.display = 'block';
         }
 
-        // Botón de volver a la cuadrícula
+        // Script para colorear 4 letras al azar
+        function colorizeRandomLetters() {
+            const text = "horas muertas";
+            const colors = ['color-red', 'color-yellow', 'color-green', 'color-blue'];
+            
+            let htmlContent = '';
+            for (let i = 0; i < text.length; i++) {
+                htmlContent += `<span class="letter">${text[i]}</span>`;
+            }
+            mainTitleContainer.innerHTML = htmlContent;
+
+            const letterSpans = Array.from(mainTitleContainer.querySelectorAll('.letter')).filter(span => span.textContent.trim() !== '');
+
+            let chosenIndices = [];
+            while (chosenIndices.length < 4 && chosenIndices.length < letterSpans.length) {
+                let randomIndex = Math.floor(Math.random() * letterSpans.length);
+                if (!chosenIndices.includes(randomIndex)) {
+                    chosenIndices.push(randomIndex);
+                }
+            }
+
+            chosenIndices.forEach((letterIndex, colorIndex) => {
+                letterSpans[letterIndex].classList.add(colors[colorIndex]);
+            });
+        }
+
         backToGridBtn.addEventListener('click', hideDetailView);
 
-        // Hacer clic en el título principal también devuelve a la cuadrícula
-        mainTitle.addEventListener('click', hideDetailView);
+        mainTitleContainer.addEventListener('click', () => {
+            hideDetailView();
+            colorizeRandomLetters();
+        });
     </script>
 </body>
 </html>
