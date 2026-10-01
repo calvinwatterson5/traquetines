@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>traquetines</title>
+    <title>horas muertas</title>
     <!-- Fuentes desde Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     
@@ -37,7 +37,7 @@
             flex-grow: 1;
         }
 
-        /* Título Gótico Principal "traquetines" */
+        /* Título Gótico Principal "horas muertas" */
         header {
             margin-bottom: 30px;
             text-align: center;
@@ -111,12 +111,13 @@
             font-family: 'UnifrakturMaguntia', cursive;
             font-size: 2.4rem;
             color: #ffffff;
-            margin-bottom: 25px;
+            margin-bottom: 5px;
             letter-spacing: 1px;
             text-align: center;
         }
 
-.detail-subtitle {
+        /* Subtítulo del programa en detalle */
+        .detail-subtitle {
             font-family: 'MedievalSharp', cursive;
             font-size: 0.95rem;
             color: #888888;
@@ -132,22 +133,23 @@
             max-width: 380px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 22px;
             margin-bottom: 30px;
         }
 
-        /* Estilo de los párrafos de texto con la imagen flotando en su interior */
+        /* Estilo de los párrafos de texto */
         .detail-paragraph {
             font-family: 'MedievalSharp', cursive;
-            font-size: 1.0rem;
-            line-height: 1.2;
+            font-size: 1.05rem;
+            line-height: 1.6;
             color: #cccccc;
-            letter-spacing: 0.2px;
+            letter-spacing: 0.5px;
             text-align: justify;
             text-justify: inter-word;
-            overflow: hidden; /* Contiene los elementos flotados dentro del párrafo */
+            overflow: hidden; /* Contiene los elementos flotados */
         }
-/* Efecto de Letra Capitular (Estilo miniatura / códice medieval) */
+
+        /* Efecto de Letra Capitular (Estilo miniatura / códice medieval) */
         .detail-paragraph::first-letter {
             font-family: 'UnifrakturMaguntia', cursive;
             font-size: 3rem;
@@ -159,6 +161,7 @@
             color: #ffffff;
             text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
         }
+
         /* Bloque de imagen flotada dentro del párrafo */
         .inline-image-block {
             display: inline-block;
@@ -189,11 +192,11 @@
 
         /* Pie de foto ajustado al ancho de la imagen */
         .inline-caption {
-            font-family: 'MedievalSharp', cursive;
+            font-family: 'UnifrakturMaguntia', cursive;
             font-size: 0.75rem;
             color: #777777;
             letter-spacing: 0.5px;
-            text-align: justify;
+            text-align: center;
             margin-top: 4px;
             display: block;
             line-height: 1.1;
@@ -244,7 +247,7 @@
         
         <!-- Título Gótico Principal con letras dinámicas -->
         <header>
-            <h1 class="gothic-title" id="main-title">traquetines</h1>
+            <h1 class="gothic-title" id="main-title">horas muertas</h1>
         </header>
 
         <!-- SECCIÓN 1: Cuadrícula General -->
@@ -256,6 +259,7 @@
         <section id="detail-section" class="detail-view">
             <h2 id="detail-program-title" class="detail-title"></h2>
             <p id="detail-program-subtitle" class="detail-subtitle"></p> <!-- Subtítulo añadido -->
+            
             <!-- Contenedor dinámico -->
             <div id="detail-content-container" class="detail-content"></div>
             
@@ -266,33 +270,33 @@
 
     <!-- Pie de página -->
     <footer>
-        <p class="footer-text">Hecho con profunda irreverencia</p>
+        <p class="footer-text">hecho con irreverencia</p>
     </footer>
 
     <!-- Elemento de audio global -->
     <audio id="audio-stream" preload="metadata"></audio>
 
     <script>
-        // Lista de programas con párrafos que pueden contener opcionalmente una imagen integrada
+        // Lista de programas con subtítulos, texto e imágenes opcionales
         const playlist = [
             {
-                title: "Schiarazula Marazula y otras danzas de la lluvia",
-                subtitle: "Programa 1",
-                src: "music/schiarazula.mp3",
-                thumbnail: "images/1.jpg", 
+                title: "Programa I",
+                subtitle: "Danzas instrumentales y juglares de la baja edad media", // Subtítulo aquí
+                src: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Anonymous_-_Estampie_-_keyboard_version.ogg",
+                thumbnail: "images/thumb-1.jpg", 
                 content: [
                     {
-                        text: "En este primer capítulo exploramos las danzas instrumentales de la baja edad media, donde los juglares recorrían los burgos interpretando estampies a los pies de las murallas. Los bellatores o guerreros eran la nobleza, cuya función era la protección física, la defensa de todos ante las agresiones e injusticias. Estaba organizada piramidalmente desde el emperador, pasando por los reyes y descendiendo sin solución de continuidad hasta el último escudero, aunque atendiendo a su rango, poder y riqueza puede clasificarse en dos partes diferenciadas: alta nobleza (marqueses, condes y duques) cuyos feudos tienen el tamaño de regiones y provincias (aunque la mayor parte de las veces no en continuidad territorial, sino repartido y difuso, lleno de enclaves y exclaves); y la baja nobleza o caballeros (barones, infanzones), cuyos feudos son del tamaño de pequeñas comarcas (a escala municipal o inferior a la municipal), o directamente no poseen feudos territoriales, viviendo en los castillos de señores más importantes, o en ciudades o poblaciones en las que no ejercen jurisdicción (aunque sí pueden ejercer su regimiento, es decir, participar en su gobierno municipal en representación del estado noble). A finales de la Edad Media y en la Edad Moderna, cuando la nobleza ya no ejercía su función militar, como era el caso de los hidalgos españoles, que aducían sus privilegios estamentales para evitar el pago de impuestos y obtener alguna ventaja social, alardeando de ejecutoria o de blasón y casa solariega, pero que al no disponer de rentas feudales suficientes para mantener la manera de vida nobiliaria, corrían el peligro de perder su condición por contraer un matrimonio desigual o ganarse la vida trabajando.",
+                        text: "En este primer capítulo exploramos las danzas instrumentales de la baja edad media, donde los juglares recorrían los burgos interpretando estampies a los pies de las murallas.",
                         image: {
-                            url: "images/13.jpg",
-                            caption: "Ritter Hiltbolt von Schwangau, un noble que resulta era caballero",
-                            float: "left" // 'left' o 'right'
+                            url: "images/programa1-detalle.jpg",
+                            caption: "Ritter Hiltbolt von Schwangau",
+                            float: "left"
                         }
                     },
                     {
                         text: "La estructura rítmica de estas piezas revela un pulso terrenal, desprovisto de la rigidez litúrgica y adaptado al movimiento de las cortes señoriales. Los instrumentos de viento y cuerda hacían eco en plazas y callejuelas.",
                         image: {
-                            url: "images/14.jpg",
+                            url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cantigas_de_Santa_Maria_-_musicians.jpg/400px-Cantigas_de_Santa_Maria_-_musicians.jpg",
                             caption: "Músicos itinerantes",
                             float: "right"
                         }
@@ -300,14 +304,15 @@
                 ]
             },
             {
-                title: "Ode to John Williams",
-                src: "music/dd.mp3",
-                thumbnail: "images/2.jpg", 
+                title: "Programa II",
+                subtitle: "La escuela de Notre-Dame y el organum polifónico",
+                src: "https://upload.wikimedia.org/wikipedia/commons/8/82/Perotin_-_Viderunt_Omnes_%28Ensemble_Organum%29.ogg",
+                thumbnail: "images/thumb-2.jpg",
                 content: [
                     {
-                        text: "John Williams spoken-word praise, blending works and music pieces belonging to a common historic cannon.",
+                        text: "Una inmersión profunda en la escuela de Notre-Dame y el organum polifónico. Las catedrales góticas resonaban con estas complejas arquitecturas vocales esculpidas en piedra y aire.",
                         image: {
-                            url: "images/7.jpg",
+                            url: "images/programa2-detalle.jpg",
                             caption: "Walther von der Vogelweide",
                             float: "left"
                         }
@@ -316,8 +321,9 @@
             },
             {
                 title: "Programa III",
-                src: "music/dd.mp3",
-                thumbnail: "images/3.jpg", 
+                subtitle: "Guillaume de Machaut y la cúspide del Ars Nova",
+                src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Guillaume_de_Machaut_-_Messe_de_nostre_dame_-_Kyrie.ogg",
+                thumbnail: "images/thumb-3.jpg",
                 content: [
                     {
                         text: "La obra cumbre de Guillaume de Machaut analizada nota a nota. La polifonía del Ars Nova redefine la devoción religiosa a través de un misticismo terrenal y sofisticado."
@@ -326,8 +332,9 @@
             },
             {
                 title: "Programa IV",
-                src: "music/dd.mp3",
-                thumbnail: "images/4.jpg", 
+                subtitle: "Cantigas de Alfonso X el Sabio",
+                src: "https://upload.wikimedia.org/wikipedia/commons/3/36/Cantigas_de_Santa_Maria_No._166_-_Como_pod_a_Groriosa.ogg",
+                thumbnail: "images/thumb-4.jpg",
                 content: [
                     {
                         text: "Cantigas de Alfonso X el Sabio. Un puente sonoro entre las culturas cristiana, judía y musulmana de la península ibérica medieval impregnado de lirismo devocional."
@@ -336,8 +343,9 @@
             },
             {
                 title: "Programa V",
-                src: "music/dd.mp3",
-                thumbnail: "images/5.jpg", 
+                subtitle: "Visiones místicas y cantos de Hildegard von Bingen",
+                src: "https://upload.wikimedia.org/wikipedia/commons/4/45/Hildegard_von_Bingen_-_O_viridis_diadema.ogg",
+                thumbnail: "images/thumb-5.jpg",
                 content: [
                     {
                         text: "Las visiones místicas convertidas en melodías monofónicas por Hildegard von Bingen. Cantos celestiales que desafiaron los límites de la tesitura vocal de su época."
@@ -346,8 +354,9 @@
             },
             {
                 title: "Programa VI",
-                src: "music/dd.mp3",
-                thumbnail: "images/7.jpg", 
+                subtitle: "Contrapunto inglés y el legado de John Dunstaple",
+                src: "https://upload.wikimedia.org/wikipedia/commons/a/a2/John_Dunstaple_-_Quam_pulchra_es.ogg",
+                thumbnail: "images/thumb-6.jpg",
                 content: [
                     {
                         text: "El contrapunto inglés de John Dunstaple y su influencia en el continente. Armonías diáfanas y acordes plenos que anticipaban la llegada del Renacimiento."
@@ -356,8 +365,9 @@
             },
             {
                 title: "Programa VII",
-                src: "music/dd.mp3",
-                thumbnail: "images/8.jpg", 
+                subtitle: "Monodia cortesana y la fama de las cantigas marianas",
+                src: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Alfonso_X_el_Sabio_-_Cantiga_100_%28Santa_Maria_strela_do_dia%29.ogg",
+                thumbnail: "images/thumb-7.jpg",
                 content: [
                     {
                         text: "Estela do dia: la fama de las cantigas marianas analizada desde la perspectiva de la monodia cortesana medieval y los instrumentos de cuerda frotada."
@@ -366,8 +376,9 @@
             },
             {
                 title: "Programa VIII",
-                src: "music/dd.mp3",
-                thumbnail: "images/9.jpg", 
+                subtitle: "Tablatura instrumental antigua y arqueología sonora",
+                src: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Anonymous_-_Estampie_-_keyboard_version.ogg",
+                thumbnail: "images/thumb-8.jpg",
                 content: [
                     {
                         text: "Nuevas variaciones sobre repertorios anónimos de tablatura instrumental antigua. Un ejercicio de arqueología sonora interpretado con criterios históricos."
@@ -376,8 +387,9 @@
             },
             {
                 title: "Programa IX",
-                src: "music/dd.mp3",
-                thumbnail: "images/10.jpg", 
+                subtitle: "Cítolas, laudes y fiedles en los manuscritos alfonsíes",
+                src: "https://upload.wikimedia.org/wikipedia/commons/8/82/Perotin_-_Viderunt_Omnes_%28Ensemble_Organum%29.ogg",
+                thumbnail: "images/thumb-9.jpg",
                 content: [
                     {
                         text: "La instrumentación medieval en los manuscritos alfonsíes: cítolas, laudes y fiedles dialogando en una atmósfera de rigurosa contemplación estética."
@@ -386,8 +398,9 @@
             },
             {
                 title: "Programa X",
-                src: "music/dd.mp3",
-                thumbnail: "images/6.jpg", 
+                subtitle: "El arpa gótica en las cortes centroeuropeas del siglo XIV",
+                src: "https://upload.wikimedia.org/wikipedia/commons/9/91/Guillaume_de_Machaut_-_Messe_de_nostre_dame_-_Kyrie.ogg",
+                thumbnail: "images/thumb-10.jpg",
                 content: [
                     {
                         text: "El arpa gótica y su papel litúrgico y profano en las cortes centroeuropeas del siglo XIV. El sonido íntimo de la cuerda pulsada sobre caja de madera."
@@ -396,8 +409,9 @@
             },
             {
                 title: "Programa XI",
-                src: "music/dd.mp3",
-                thumbnail: "images/11.jpg", 
+                subtitle: "Minnesänger y trovadores de los feudos germánicos",
+                src: "https://upload.wikimedia.org/wikipedia/commons/3/36/Cantigas_de_Santa_Maria_No._166_-_Como_pod_a_Groriosa.ogg",
+                thumbnail: "images/thumb-11.jpg",
                 content: [
                     {
                         text: "Minnesänger y trovadores alemanes: la poesía cantada como vehículo de transmisión cultural, amor cortés y crónica social de los feudos medievales."
@@ -406,8 +420,9 @@
             },
             {
                 title: "Programa XII",
-                src: "music/dd.mp3",
-                thumbnail: "images/12.jpg", 
+                subtitle: "Repertorio sacro en la penumbra de los conventos femeninos",
+                src: "https://upload.wikimedia.org/wikipedia/commons/4/45/Hildegard_von_Bingen_-_O_viridis_diadema.ogg",
+                thumbnail: "images/thumb-12.jpg",
                 content: [
                     {
                         text: "Clausura del ciclo con el repertorio sacro de abadías y conventos femeninos. El canto llano como forma de meditación atemporal en la penumbra monástica."
@@ -421,6 +436,7 @@
         const gallerySection = document.getElementById('gallery-section');
         const detailSection = document.getElementById('detail-section');
         const detailProgramTitle = document.getElementById('detail-program-title');
+        const detailProgramSubtitle = document.getElementById('detail-program-subtitle'); // Referencia al subtítulo
         const detailContentContainer = document.getElementById('detail-content-container');
         const backToGridBtn = document.getElementById('back-to-grid');
         const mainTitleContainer = document.getElementById('main-title');
@@ -448,6 +464,7 @@
 
         function showDetailView(track) {
             detailProgramTitle.textContent = track.title;
+            detailProgramSubtitle.textContent = track.subtitle || ""; // Asigna el subtítulo de forma dinámica
             detailContentContainer.innerHTML = '';
 
             track.content.forEach(paragraphData => {
@@ -456,7 +473,6 @@
                 
                 let htmlContent = '';
                 
-                // Si el párrafo tiene una imagen asociada, se inserta al inicio del párrafo para que el texto la envuelva
                 if (paragraphData.image) {
                     const floatClass = paragraphData.image.float === 'right' ? 'float-right' : 'float-left';
                     htmlContent += `
@@ -482,7 +498,7 @@
         }
 
         function colorizeRandomLetters() {
-            const text = "traquetines";
+            const text = "horas muertas";
             const colors = ['color-red', 'color-yellow', 'color-green', 'color-blue'];
             
             let htmlContent = '';
